@@ -1,0 +1,74 @@
+import { encryptStorage } from "./storage";
+
+export const addUserToLocalStorage = (id,email,name,gender,role) => {
+    const curId = encryptStorage.getItem('id');
+    const curEmail = encryptStorage.getItem('email');
+    const curName = encryptStorage.getItem('name');
+    const curGender = encryptStorage.getItem('gender');
+    const curRole = encryptStorage.getItem('role');
+    if ((curId !== id && id)&&(curEmail !== email && email)&&(curName !==name && name)&&(curGender !==gender && gender)&&(curRole !==role && role)) {
+        // store user in local storage
+        // window.localStorage.setItem('id', JSON.stringify(id));
+        // window.localStorage.setItem('email', JSON.stringify(email));
+        // window.localStorage.setItem('name', JSON.stringify(name));
+        // window.localStorage.setItem('avatar', JSON.stringify(avatar));
+        // window.localStorage.setItem('gender', JSON.stringify(gender));
+        // window.localStorage.setItem('role', JSON.stringify(role));
+        encryptStorage.setMultipleItems([
+            ['id', JSON.stringify(id)],
+            ['email', JSON.stringify(email)],
+            ['name', JSON.stringify(name)],
+            ['gender', JSON.stringify(gender)],
+            ['role', JSON.stringify(role)],
+          ]);
+    } else {
+        console.log("Add user failed")
+        return null;
+    }
+}
+
+export const getUserFromLocalStorage = () => {
+
+    let user = {
+        id:"",
+        email:"",
+        name:"",
+        // avatar:null,
+        gender:"",
+        role:""
+    }
+    const curId = encryptStorage.getItem('id');
+    const curEmail = encryptStorage.getItem('email');
+    const curName = encryptStorage.getItem('name');
+    // const curAvatar = encryptStorage.getItem('avatar');
+    const curGender = encryptStorage.getItem('gender');
+    const curRole = encryptStorage.getItem('role');
+    if (curId && curEmail && curName  && curGender && curRole) {
+        user= {id:curId,email:curEmail,name:curName,gender:curGender,role:curRole}
+        return user
+    } 
+    else {
+        console.log("Get user failed")
+        // return null
+    }
+}
+export const clearUserFromLocalStorage = () => {
+    const curId = encryptStorage.getItem('id');
+    const curEmail = encryptStorage.getItem('email');
+    const curName = encryptStorage.getItem('name');
+    // const curAvatar = encryptStorage.getItem('avatar');
+    const curGender = encryptStorage.getItem('gender');
+    const curRole = encryptStorage.getItem('role');
+    if (curId && curEmail && curName  && curGender && curRole) {
+        // store access token in local storage
+        encryptStorage.removeItem('id');
+        encryptStorage.removeItem('email');
+        encryptStorage.removeItem('name');
+        // encryptStorage.removeItem('avatar');
+        encryptStorage.removeItem('gender');
+        encryptStorage.removeItem('role');
+    } else {
+        console.log("Clear user failed")
+        // return null
+    }
+}

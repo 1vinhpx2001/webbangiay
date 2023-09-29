@@ -39,7 +39,6 @@ export default function Header() {
             </button>
           </div>
         </form>
-        
     
       </div>
     </div>

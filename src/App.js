@@ -28,7 +28,7 @@ function App() {
 
           <Route path="/order" exact element={<Order></Order>}></Route>
 
-          <Route path="/cart" exact element={<Cart></Cart>}></Route>
+          <Route path="/cart"  exact element={<Cart></Cart>}></Route>
 
           <Route path="/check-out" exact element={<CheckOut></CheckOut>}></Route>
 
