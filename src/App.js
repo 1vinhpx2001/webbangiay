@@ -5,6 +5,7 @@ import CheckOut from "./pages/checkout/CheckOut";
 import Homepage from "./pages/homepage/Homepage";
 import Login from "./pages/login/Login";
 import Order from "./pages/order/Order";
+import ProductDetail from "./pages/productdetail/ProductDetail";
 import ProductList from "./pages/productlist/ProductList";
 import Register from "./pages/register/Register";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -12,8 +13,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 function App() {
   return (
     <>
-
-
       <BrowserRouter>
         <Header />
         <Routes>
@@ -32,11 +31,13 @@ function App() {
 
           <Route path="/check-out" exact element={<CheckOut></CheckOut>}></Route>
 
+          <Route path="/product-detail" exact element={<ProductDetail></ProductDetail>}></Route>
+
         </Routes>
         <Footer />
       </BrowserRouter>
 
-
+      
       {/* <ProductList/> */}
       {/* <Homepage/> */}
       {/* <Login/> */}

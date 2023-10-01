@@ -16,8 +16,7 @@ export default function Homepage() {
           <p className='text-blue-500  '>Xem thêm </p>
           <IconSeeMore />
         </div>
-        <div className='my-2 grid grid-cols-5 gap-3 '>
-          <CardProduct />
+        <div className='my-2 grid grid-cols-4 gap-3 '>
           <CardProduct />
           <CardProduct />
           <CardProduct />
@@ -30,8 +29,7 @@ export default function Homepage() {
           <p className='text-blue-500  '>Xem thêm </p>
           <IconSeeMore />
         </div>
-        <div className='my-2 grid grid-cols-5 gap-3 '>
-          <CardProduct />
+        <div className='my-2 grid grid-cols-4 gap-3 '>
           <CardProduct />
           <CardProduct />
           <CardProduct />
@@ -44,8 +42,7 @@ export default function Homepage() {
           <p className='text-blue-500  '>Xem thêm </p>
           <IconSeeMore />
         </div>
-        <div className='my-2 grid grid-cols-5 gap-3 '>
-          <CardProduct />
+        <div className='my-2 grid grid-cols-4 gap-3 '>
           <CardProduct />
           <CardProduct />
           <CardProduct />

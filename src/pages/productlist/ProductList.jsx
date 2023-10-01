@@ -4,9 +4,9 @@ import CardProduct from '../../components/cardproduct/CardProduct';
 
 export default function ProductList() {
     return (
-        <div className='flex mx-[150px]  w-10/12'>
+        <div className='flex mx-auto w-10/12'>
             <div>
-                <Card className="w-80 mb-10">
+                <Card className="w-72 mb-10">
                     <p className='text-xl text-yellow-700 font-semibold mt-10 ml-5'>THƯƠNG HIỆU</p>
                     <List className='ml-10'>
                         <ListItem>PUMA</ListItem>
@@ -18,7 +18,7 @@ export default function ProductList() {
                         <ListItem>LI-NING</ListItem>
                     </List>
                 </Card>
-                <Card className="w-80 mb-10">
+                <Card className="w-72 mb-10">
                     <p className='text-xl text-yellow-700 font-semibold mt-10 ml-5'>LOẠI SẢN PHẨM</p>
                     <List className='ml-10'>
                         <ListItem>Giày Nam</ListItem>
@@ -30,7 +30,7 @@ export default function ProductList() {
                         <ListItem>Giày chạy bộ</ListItem>
                     </List>
                 </Card>
-                <Card className="w-80 mb-10">
+                <Card className="w-72 mb-10">
                     <p className='text-xl text-yellow-700 font-semibold mt-10 ml-5'>GIÁ</p>
                     <List className='ml-10'>
                         <ListItem>Dưới 1 Triệu</ListItem>
@@ -41,8 +41,8 @@ export default function ProductList() {
                     </List>
                 </Card>
             </div>
-            <div className='ml-10 flex flex-col justify-between'>
-
+            
+            <div className='ml-6 flex flex-col justify-between'>
                 <div>
                     <p className='text-xl text-yellow-700 font-semibold mt-10 ml-5'>SẢN PHẨM NỔI BẬT</p>
                     <div className='grid grid-cols-3 gap-10'>
@@ -98,7 +98,7 @@ export default function ProductList() {
                         </ul>
                     </nav>
                 </div>
-
+                
             </div>
         </div>
     )
