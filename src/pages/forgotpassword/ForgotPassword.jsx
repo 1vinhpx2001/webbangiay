@@ -65,13 +65,13 @@ export default function ForgotPassword() {
     const handleBack = () => {
         setActiveStep(activeStep - 1);
     };
-    let oldPassword = otp
+    let tempPassword = otp
     const updatePass = async () => {
         const w = toast.loading("Vui lòng chờ ...")
         let checkPassword = !validator.isEmpty(newPassword) && newPassword.length >= 6
         let checkConfirmPass = !validator.isEmpty(confirmPassword) && (newPassword === confirmPassword)
         if (checkPassword && checkConfirmPass) {
-            let res = await forgotPassword({ oldPassword, newPassword }, id)
+            let res = await forgotPassword({ tempPassword, newPassword }, id)
             if (res.success) {
                 let url = '/'
                 UpdateSuccessNavigate(w,'Đổi mật khẩu thành công',url)

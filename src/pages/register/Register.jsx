@@ -340,7 +340,7 @@ export default function Register() {
                                     <div>
                                         <label htmlFor="province" className="block text-sm font-semibold text-gray-800 ">Tỉnh/Thành phố</label>
                                         <select value={province} onChange={handleChangeProvince} id="province" placeholder="Tỉnh/Thành phố" className=" block w-full px-4 py-2 mt-2 text-yellow-700 bg-white border rounded-md focus:border-yellow-400 focus:ring-yellow-300 focus:outline-none focus:ring focus:ring-opacity-40">
-
+                                            <option value="" disabled selected>Tỉnh/Thành phố</option>
                                             {provinces.map((provinceItem) => (
                                                 <option key={provinceItem.ProvinceID} value={provinceItem.ProvinceID}>
                                                     {provinceItem.ProvinceName}
@@ -351,7 +351,7 @@ export default function Register() {
                                     <div>
                                         <label htmlFor="district" className=" block text-sm font-semibold text-gray-800">Quận/Huyện</label>
                                         <select value={district} onChange={handleChangeDistrict} id="district" placeholder="Quận/Huyện" className="block w-full px-4 py-2 mt-2 text-yellow-700 bg-white border rounded-md focus:border-yellow-400 focus:ring-yellow-300 focus:outline-none focus:ring focus:ring-opacity-40">
-
+                                        <option value="" disabled selected>Quận/Huyện</option>
                                             {districts.map((districtItem) => (
                                                 <option key={districtItem.DistrictID} value={districtItem.DistrictID}>
                                                     {districtItem.DistrictName}
@@ -364,7 +364,7 @@ export default function Register() {
                                     <div>
                                         <label htmlFor="ward" className="block text-sm font-semibold text-gray-800 ">Phường/Xã</label>
                                         <select value={ward} onChange={handleChangeWard} id="ward" placeholder="Phường/Xã" className=" block w-full px-4 py-2 mt-2 text-yellow-700 bg-white border rounded-md focus:border-yellow-400 focus:ring-yellow-300 focus:outline-none focus:ring focus:ring-opacity-40">
-                                            
+                                        <option value="" disabled selected>Phường/Xã</option> 
                                             {wards.map((wardItem) => (
                                                 <option key={wardItem.WardCode} value={wardItem.WardCode}>
                                                     {wardItem.WardName}

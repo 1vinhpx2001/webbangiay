@@ -1,16 +1,65 @@
-import React from 'react'
+import React, { useState } from 'react'
 import IconSearch from '../icons/IconSearch'
-import { Link } from 'react-router-dom'
-
+import { Link, useNavigate } from 'react-router-dom'
+import { getUserFromLocalStorage } from '../../utils/userHandle'
+import IconDropDown from '../icons/IconDropDown'
+import { useDispatch } from 'react-redux'
+import * as authAction from '../../redux/auth/authSlice'
 
 export default function Header() {
+  
+  let userCurrent = getUserFromLocalStorage()
+  let navigate = useNavigate();
+  const [isOpen, setOpen] = useState(false);
+  const dispatch = useDispatch();
+
+
+
+  const handleDropDown = () => {
+    setOpen(!isOpen);
+  };
+
+  const handleLogout = () => {
+    navigate('/')
+    dispatch(authAction.logout())
+  }
   return (
-    <div>
+    <div >
 
       <div className='flex items-center justify-end pr-6 py-2'>
-        <Link to='/'className='pr-2 hover:text-yellow-700'>👑 SneakerHead</Link>
-        <Link to='/login' className='border-l-[1px] border-gray-300 px-2 hover:text-yellow-700'>Đăng nhập</Link>
-        <Link to='/register' className='border-l-[1px] border-gray-300 px-2 hover:text-yellow-700'>Đăng ký</Link>
+        <Link to='/' className='pr-2 hover:text-yellow-700'>👑 SneakerHead</Link>
+        {userCurrent?.id !== undefined ? <>
+          <div className="dropdown" >
+            <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" onClick={handleDropDown} className="border-l-[1px] pl-2 border-gray-300 focus:outline-none text-center inline-flex items-center " type="button">Xin chào&nbsp;,&nbsp;<span className='font-semibold'>{userCurrent?.name}</span>
+            <IconDropDown></IconDropDown>
+            </button>
+
+            <div
+              id="dropdown"
+              className={`z-10 w-44 bg-white rounded absolute shadow ml-9 ${isOpen ? "block" : "hidden"
+                }`}
+            >
+              <ul className=" z-10 w-44 bg-white rounded shadow ">
+                <li
+                >
+                  <Link to='order' onClick={handleDropDown}className="block py-2 px-4 hover:bg-gray-100 w-full text-left">
+                    Đơn hàng của tôi
+                  </Link>
+                </li>
+                <li
+                >
+                  <button type='button' onClick={handleLogout}className="block py-2 px-4 hover:bg-gray-100 w-full text-left">
+                    Đăng xuất
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </> : <>
+            <Link to='/login' className='border-l-[1px] border-gray-300 px-2 hover:text-yellow-700'>Đăng nhập</Link>
+            <Link to='/register' className='border-l-[1px] border-gray-300 px-2 hover:text-yellow-700'>Đăng ký</Link>
+          </>
+        }
       </div>
 
       <div className='flex items-center px-7 h-24'>
@@ -23,8 +72,8 @@ export default function Header() {
         <Link to='/product-list' className='font-bold mx-4 hover:text-yellow-700'>SẢN PHẨM</Link>
         <Link to='/cart' className='font-bold mx-4 hover:text-yellow-700'>GIỎ HÀNG</Link>
         <Link to='/order' className='font-bold mx-4 hover:text-yellow-700'>ĐƠN HÀNG</Link>
-        <Link to='/'className='font-bold mx-4 hover:text-yellow-700'>CHÍNH SÁCH</Link>
-       
+        <Link to='/' className='font-bold mx-4 hover:text-yellow-700'>CHÍNH SÁCH</Link>
+
         <form className='ml-auto'>
           <label htmlFor="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
           <div className="relative">
@@ -39,7 +88,7 @@ export default function Header() {
             </button>
           </div>
         </form>
-    
+
       </div>
     </div>
   )

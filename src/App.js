@@ -11,6 +11,7 @@ import ProductList from "./pages/productlist/ProductList";
 import Register from "./pages/register/Register";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+
 function App() {
   return (
     <>
@@ -36,6 +37,7 @@ function App() {
 
           <Route path="/forgot-password" exact element={<ForgotPassword></ForgotPassword>}></Route>
 
+     
         </Routes>
         <Footer />
       </BrowserRouter>

@@ -75,7 +75,7 @@ export default function Login() {
                                 </label>
                                 <input
                                     tabIndex={2}
-                                    type="text"
+                                    type="password"
                                     id='password'
                                     value={password}
                                     onChange={onChangePasswordHanle}
