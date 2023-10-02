@@ -1,10 +1,16 @@
 import axios from 'axios'
 import { clearFromLocalStorage, getFromLocalStorage } from '../utils/tokenHandle';
 import { clearUserFromLocalStorage } from '../utils/userHandle';
+import { API_ADDRESS, SHOP_ID, TOKEN_API_ADDRESS } from '../common/const';
 
 const Instance = axios.create({
     baseURL: "http://localhost:8080/api"
 });
+
+const axiosCountry = axios.create({
+    baseURL:API_ADDRESS,
+})
+
 Instance.interceptors.request.use(
     function (req) {
         const token = getFromLocalStorage()
@@ -28,6 +34,11 @@ Instance.interceptors.response.use(
         }
         return Promise.reject(error);
 });
+
+export const getCountryPost = async (path,params={}) => {
+    const response = await axiosCountry.post(path,params,{headers:{"token":TOKEN_API_ADDRESS,"ShopId":SHOP_ID}});
+    return response.data;
+};
 
 export const get = async (path, params = {}) => {
     const response = await Instance.get(path, params);

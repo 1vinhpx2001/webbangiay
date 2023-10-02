@@ -2,6 +2,7 @@ import Footer from "./components/footer/Footer";
 import Header from "./components/header/Header";
 import Cart from "./pages/cart/Cart";
 import CheckOut from "./pages/checkout/CheckOut";
+import ForgotPassword from "./pages/forgotpassword/ForgotPassword";
 import Homepage from "./pages/homepage/Homepage";
 import Login from "./pages/login/Login";
 import Order from "./pages/order/Order";
@@ -32,6 +33,8 @@ function App() {
           <Route path="/check-out" exact element={<CheckOut></CheckOut>}></Route>
 
           <Route path="/product-detail" exact element={<ProductDetail></ProductDetail>}></Route>
+
+          <Route path="/forgot-password" exact element={<ForgotPassword></ForgotPassword>}></Route>
 
         </Routes>
         <Footer />
