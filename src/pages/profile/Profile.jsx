@@ -291,7 +291,6 @@ export default function Profile() {
                                 {isOpen && (
                                   <ChangePasswordModal
                                     isOpen={isOpenModal}
-                                    // changeAvatar={setAvatar}
                                   />
                                 )}
                                    
