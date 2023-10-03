@@ -8,6 +8,7 @@ import Login from "./pages/login/Login";
 import Order from "./pages/order/Order";
 import ProductDetail from "./pages/productdetail/ProductDetail";
 import ProductList from "./pages/productlist/ProductList";
+import Profile from "./pages/profile/Profile";
 import Register from "./pages/register/Register";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -37,6 +38,7 @@ function App() {
 
           <Route path="/forgot-password" exact element={<ForgotPassword></ForgotPassword>}></Route>
 
+          <Route path="/profile/:userId" element={<Profile></Profile>}></Route>
      
         </Routes>
         <Footer />

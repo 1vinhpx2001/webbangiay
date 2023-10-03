@@ -48,6 +48,12 @@ export default function Header() {
                 </li>
                 <li
                 >
+                  <Link to={`/profile/${userCurrent.id}`} onClick={handleDropDown}className="block py-2 px-4 hover:bg-gray-100 w-full text-left">
+                    Thông tin cá nhân
+                  </Link>
+                </li>
+                <li
+                >
                   <button type='button' onClick={handleLogout}className="block py-2 px-4 hover:bg-gray-100 w-full text-left">
                     Đăng xuất
                   </button>

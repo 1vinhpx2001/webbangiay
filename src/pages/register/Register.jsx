@@ -275,7 +275,7 @@ export default function Register() {
             if (check.data.success) {
                 UpdateSuccessNavigate(wait, 'Đăng ký thành công', '/')
                 navigate('/login')
-                
+
             } else {
                 UpdateError(wait, 'Xác thực thất bại')
             }
@@ -351,7 +351,7 @@ export default function Register() {
                                     <div>
                                         <label htmlFor="district" className=" block text-sm font-semibold text-gray-800">Quận/Huyện</label>
                                         <select value={district} onChange={handleChangeDistrict} id="district" placeholder="Quận/Huyện" className="block w-full px-4 py-2 mt-2 text-yellow-700 bg-white border rounded-md focus:border-yellow-400 focus:ring-yellow-300 focus:outline-none focus:ring focus:ring-opacity-40">
-                                        <option value="" disabled selected>Quận/Huyện</option>
+                                            <option value="" disabled selected>Quận/Huyện</option>
                                             {districts.map((districtItem) => (
                                                 <option key={districtItem.DistrictID} value={districtItem.DistrictID}>
                                                     {districtItem.DistrictName}
@@ -364,7 +364,7 @@ export default function Register() {
                                     <div>
                                         <label htmlFor="ward" className="block text-sm font-semibold text-gray-800 ">Phường/Xã</label>
                                         <select value={ward} onChange={handleChangeWard} id="ward" placeholder="Phường/Xã" className=" block w-full px-4 py-2 mt-2 text-yellow-700 bg-white border rounded-md focus:border-yellow-400 focus:ring-yellow-300 focus:outline-none focus:ring focus:ring-opacity-40">
-                                        <option value="" disabled selected>Phường/Xã</option> 
+                                            <option value="" disabled selected>Phường/Xã</option>
                                             {wards.map((wardItem) => (
                                                 <option key={wardItem.WardCode} value={wardItem.WardCode}>
                                                     {wardItem.WardName}
@@ -439,10 +439,10 @@ export default function Register() {
                                     />
                                 </div>
                                 <div className="mt-6">
-                                <button type='button' onClick={handleNext} className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-yellow-700 rounded-md hover:bg-yellow-600 focus:outline-none focus:bg-yellow-600">
-                                    Gửi mã xác nhận
-                                </button>
-                            </div>
+                                    <button type='button' onClick={handleNext} className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-yellow-700 rounded-md hover:bg-yellow-600 focus:outline-none focus:bg-yellow-600">
+                                        Gửi mã xác nhận
+                                    </button>
+                                </div>
                             </> : <></>}
                             {activeStep === 1 ? <>
                                 <div className='block text-lg font-semibold text-center text-gray-800 '>XÁC THỰC</div>
@@ -461,11 +461,11 @@ export default function Register() {
                                         className="block w-full px-4 py-2 mt-2 text-yellow-700 bg-white border rounded-md focus:border-yellow-400 focus:ring-yellow-300 focus:outline-none focus:ring focus:ring-opacity-40"
                                         required
                                     />
-                                <div className="mt-6">
-                                <button type='button' onClick={handleOnClick} className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-yellow-700 rounded-md hover:bg-yellow-600 focus:outline-none focus:bg-yellow-600">
-                                    Đăng ký
-                                </button>
-                            </div>
+                                    <div className="mt-6">
+                                        <button type='button' onClick={handleOnClick} className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-yellow-700 rounded-md hover:bg-yellow-600 focus:outline-none focus:bg-yellow-600">
+                                            Đăng ký
+                                        </button>
+                                    </div>
                                 </div>
                             </> : <></>}
                         </form>

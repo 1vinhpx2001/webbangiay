@@ -8,3 +8,30 @@ export const forgotPassword = async (data,id) =>{
         return error.response
     }
 }
+
+export const getUserByID = async (id) =>{
+    try{
+        const response = await get(`/users/${id}`);
+        return response
+    }catch(error){
+        return error.response
+    }
+}
+
+export const updateUserByID = async (data,id) =>{
+    try{
+        const response = await put(`/users/${id}`,data);
+        return response
+    }catch(error){
+        return error.response
+    }
+}
+
+export const changePassword = async (data,id) =>{
+    try{
+        const response = await put(`/users/password/${id}`,data);
+        return response
+    }catch(error){
+        return error.response
+    }
+}
