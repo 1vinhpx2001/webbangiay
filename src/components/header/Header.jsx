@@ -1,18 +1,28 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import IconSearch from '../icons/IconSearch'
 import { Link, useNavigate } from 'react-router-dom'
 import { getUserFromLocalStorage } from '../../utils/userHandle'
 import IconDropDown from '../icons/IconDropDown'
 import { useDispatch } from 'react-redux'
 import * as authAction from '../../redux/auth/authSlice'
-
+import Categories from './components/Categories'
+import { Tooltip } from '@nextui-org/react'
+import { getAllCategory } from '../../api/CategoryApi'
 export default function Header() {
   
   let userCurrent = getUserFromLocalStorage()
   let navigate = useNavigate();
   const [isOpen, setOpen] = useState(false);
   const dispatch = useDispatch();
-
+  
+  const [categories, setCategories] = useState([])
+  useEffect(() => {
+    async function getData() {
+      let Categories = await getAllCategory();
+      setCategories(Categories.data)
+    }
+    getData()
+  }, []);
 
 
   const handleDropDown = () => {
@@ -68,17 +78,26 @@ export default function Header() {
         }
       </div>
 
-      <div className='flex items-center px-7 h-24'>
+      <div className='flex items-center px-7 h-24 gap-8'>
         <img src={require('../../assets/ShoesLogo.png')} alt="ShoesLogo" style={{ width: '80px', height: '80px' }} />
         <div>
-          <div className='ml-2 font-bold'>SNEAKERHEAD SHOP</div>
-          <div className='ml-2 font-bold text-xs'>Walk in style with fashion shoes.</div>
+          <div className=' font-bold'>SNEAKERHEAD SHOP</div>
+          <div className=' font-bold text-xs'>Walk in style with fashion shoes.</div>
         </div>
-        <Link to='/' className='font-bold ml-14 hover:text-yellow-700'>TRANG CHỦ</Link>
-        <Link to='/product-list' className='font-bold mx-4 hover:text-yellow-700'>SẢN PHẨM</Link>
-        <Link to='/cart' className='font-bold mx-4 hover:text-yellow-700'>GIỎ HÀNG</Link>
-        <Link to='/order' className='font-bold mx-4 hover:text-yellow-700'>ĐƠN HÀNG</Link>
-        <Link to='/' className='font-bold mx-4 hover:text-yellow-700'>CHÍNH SÁCH</Link>
+        <Link to='/' className='font-bold hover:text-yellow-700'>TRANG CHỦ</Link>
+        <Tooltip
+              content={<Categories categories={categories}/>}
+              css={{ left: '$0', transform: 'none' }}
+              placement='bottom'
+               >
+        <Link to='/product-list' 
+        className='font-bold hover:text-yellow-700 flex forcus:outline-0 outline-0'>
+        SẢN PHẨM 
+        </Link>
+        </Tooltip>
+        <Link to='/cart' className='font-bold hover:text-yellow-700'>GIỎ HÀNG</Link>
+        <Link to='/order' className='font-bold hover:text-yellow-700'>ĐƠN HÀNG</Link>
+        <Link to='/' className='font-bold hover:text-yellow-700'>CHÍNH SÁCH</Link>
 
         <form className='ml-auto'>
           <label htmlFor="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>

@@ -181,7 +181,6 @@ export default function Profile() {
                         </h1>
                         <form className="mt-6">
 
-                            <div className='block text-lg font-semibold text-center text-gray-800 '>Thông tin cá nhân</div>
                             <div className='my-2'>
                                 <label
                                     htmlFor="name"
@@ -220,7 +219,7 @@ export default function Profile() {
                                 <div>
                                     <label htmlFor="province" className="block text-sm font-semibold text-gray-800 ">Tỉnh/Thành phố</label>
                                     <select value={user.province} onChange={handleChangeProvince} id="province" placeholder="Tỉnh/Thành phố" className=" block w-full px-4 py-2 mt-2 text-yellow-700 bg-white border rounded-md focus:border-yellow-400 focus:ring-yellow-300 focus:outline-none focus:ring focus:ring-opacity-40">
-                                    <option value="" disabled >Tỉnh/Thành phố</option>
+                                    
                                         {provinces.map((provinceItem) => (
                                             <option key={provinceItem.ProvinceID} value={provinceItem.ProvinceID}>
                                                 {provinceItem.ProvinceName}
@@ -231,8 +230,8 @@ export default function Profile() {
                                 <div>
                                     <label htmlFor="district" className=" block text-sm font-semibold text-gray-800">Quận/Huyện</label>
                                     <select value={user.district} onChange={handleChangeDistrict} id="district" placeholder="Quận/Huyện" className="block w-full px-4 py-2 mt-2 text-yellow-700 bg-white border rounded-md focus:border-yellow-400 focus:ring-yellow-300 focus:outline-none focus:ring focus:ring-opacity-40">
-                                    <option value="" disabled >Tỉnh/Thành phố</option>
-                                        {districts.map((districtItem) => (
+                                    
+                                        {districts.slice(1).map((districtItem) => (
                                             <option key={districtItem.DistrictID} value={districtItem.DistrictID}>
                                                 {districtItem.DistrictName}
                                             </option>
@@ -244,7 +243,7 @@ export default function Profile() {
                                 <div>
                                     <label htmlFor="ward" className="block text-sm font-semibold text-gray-800 ">Phường/Xã</label>
                                     <select value={user.ward} onChange={handleChangeWard} id="ward" placeholder="Phường/Xã" className=" block w-full px-4 py-2 mt-2 text-yellow-700 bg-white border rounded-md focus:border-yellow-400 focus:ring-yellow-300 focus:outline-none focus:ring focus:ring-opacity-40">
-                                    <option value="" disabled >Tỉnh/Thành phố</option>
+                                   
                                         {wards.map((wardItem) => (
                                             <option key={wardItem.WardCode} value={wardItem.WardCode}>
                                                 {wardItem.WardName}

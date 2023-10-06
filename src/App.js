@@ -34,7 +34,7 @@ function App() {
 
           <Route path="/check-out" exact element={<CheckOut></CheckOut>}></Route>
 
-          <Route path="/product-detail" exact element={<ProductDetail></ProductDetail>}></Route>
+          <Route path="/product-detail/:productId" element={<ProductDetail></ProductDetail>}></Route>
 
           <Route path="/forgot-password" exact element={<ForgotPassword></ForgotPassword>}></Route>
 

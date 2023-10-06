@@ -9,6 +9,16 @@ export const forgotPassword = async (data,id) =>{
     }
 }
 
+export const getRecommendProducts = async () =>{
+    try {
+        const response = await get('/users/recommend');
+        return response
+    } catch (error) { 
+        return error.response.data 
+    };
+
+}
+
 export const getUserByID = async (id) =>{
     try{
         const response = await get(`/users/${id}`);
