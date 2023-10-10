@@ -31,7 +31,7 @@ export const verifyUser = async (data={}) =>{
 
 export const getProvince = async (data) =>{
     try {
-        const response = await post('/shipping/province',data);
+        const response = await post('/address/province',data);
         return response.data
     } catch (error) {
          return error.response
@@ -40,7 +40,7 @@ export const getProvince = async (data) =>{
 
 export const getDistrict = async (data={}) =>{
     try {
-        const response = await post('/shipping/district',data);
+        const response = await post('/address/district',data);
         return response.data
     } catch (error) {
          return error.response
@@ -48,7 +48,7 @@ export const getDistrict = async (data={}) =>{
 }
 export const getWard = async (data={}) =>{
     try {
-        const response = await post('/shipping/ward',data);
+        const response = await post('/address/ward',data);
         return response.data
     } catch (error) {
          return error.response

@@ -150,11 +150,11 @@ export default function CheckOut() {
                         <ul>
                             {/* Số sản phẩm được đặt */}
                             <li className='flex justify-between p-4 border border-t border-gray-200'>
-                                <div>
-                                    <p className='font-semibold text-base'>Nikes 500</p>
+                                <div className='mr-2'>
+                                    <p className='font-semibold text-base'>Giày Sneaker Nam Adidas Alphaboost_v1 Hp6613</p>
                                     <p className='text-gray-600'>840.000 x 2</p>
                                 </div>
-                                <div className='font-bold text-lg'>1.680.000</div>
+                                <div className='font-bold text-lg'>1.680.0000</div>
                             </li>
                             <li className='flex justify-between p-4 border border-t border-gray-200'>
                                 <div>
