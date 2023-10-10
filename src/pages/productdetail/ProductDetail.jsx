@@ -7,9 +7,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import { UpdateSuccessReload } from '../../components/alert/UpdateSuccessReload';
 import { UpdateError } from '../../components/alert/UpdateError';
 import { getReviewsByProduct } from '../../api/ReviewProductApi';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Rating } from '@material-tailwind/react';
-import ReactQuill from 'react-quill';
 import { Tooltip } from '@nextui-org/react';
 import { RadioGroup } from '@headlessui/react';
 export default function ProductDetail() {
@@ -128,6 +127,7 @@ export default function ProductDetail() {
     const [amount, setAmount] = useState(1)
     return (
         <div>
+
             <div className='w-10/12 mx-auto my-10'>
                 <div>
                     <div className='flex flex-row justify-between gap-10 '>
@@ -158,7 +158,7 @@ export default function ProductDetail() {
                                     ) : (
                                         <>
                                             <p className='text-base text-red-500'>
-                                            Hết hàng
+                                                Hết hàng
                                             </p>
                                         </>
                                     )}
@@ -166,53 +166,54 @@ export default function ProductDetail() {
                                         <Rating unratedColor="amber" ratedColor="amber" value={product.rate} readonly></Rating>
                                         <p>{product.rateCount} đánh giá</p>
                                     </div>
-                                     
+
                                 </div>
                             </div>
                             <div className='text-gray-700'>
-                            {product.description}
+                                {product.description}
                             </div>
                             <h6 className='text-2xl font-semibold text-red-600'>Giá bán :&nbsp;{formatPrice(product.discountPrice + extraFee)}</h6>
                             <h6 className='text-lg font-semibold'>
                                 Giá gốc: <del>Giá gốc:&nbsp;{formatPrice(product.price + extraFee)}</del>
                             </h6>
                             <RadioGroup className="mt-2" value={productOptionId} onChange={handleChangeSize}>
-                            <div>Chọn size:</div>
-                                    <div className="grid grid-cols-1 mt-2 gap-3 sm:grid-cols-3">
-                                        {product?.options?.map((option) => (
-                                            <Tooltip content={`Phí cộng thêm: ${formatPrice(option.extraFee)}`}>
-                                                <RadioGroup.Option
-                                                    key={option.id}
-                                                    value={option.id}
-                                                    onClick={setProductOptionId}
-                                                    className={({ active, checked }) =>
-                                                        classNames(
-                                                            option.inStock > 0
-                                                                ? 'cursor-pointer focus:outline-none'
-                                                                : 'opacity-25 cursor-not-allowed',
-                                                            
-                                                            checked
-                                                                ? 'bg-black border-transparent text-white '
-                                                                : 'bg-white border-gray-200 text-gray-900 hover:bg-gray-50',
-                                                            'border rounded-md py-3 px-5 flex items-center justify-center text-sm font-medium uppercase sm:flex-1',
-                                                        )
-                                                    }
-                                                    disabled={option.inStock <= 0}
-                                                >
-                                                    <RadioGroup.Label as="p">{option.name}</RadioGroup.Label>
-                                                </RadioGroup.Option>
-                                            </Tooltip>
-                                        ))}
-                                    </div>
-                                </RadioGroup>
+                                <div>Chọn size:</div>
+                                <div className="grid grid-cols-1 mt-2 gap-3 sm:grid-cols-3">
+                                    {product?.options?.map((option) => (
+                                        <Tooltip content={`Phí cộng thêm: ${formatPrice(option.extraFee)}`}>
+                                            <RadioGroup.Option
+                                                key={option.id}
+                                                value={option.id}
+                                                onClick={setProductOptionId}
+                                                className={({ active, checked }) =>
+                                                    classNames(
+                                                        option.inStock > 0
+                                                            ? 'cursor-pointer focus:outline-none'
+                                                            : 'opacity-25 cursor-not-allowed',
+
+                                                        checked
+                                                            ? 'bg-black border-transparent text-white '
+                                                            : 'bg-white border-gray-200 text-gray-900 hover:bg-gray-50',
+                                                        'border rounded-md py-3 px-5 flex items-center justify-center text-sm font-medium uppercase sm:flex-1',
+                                                    )
+                                                }
+                                                disabled={option.inStock <= 0}
+                                            >
+                                                <RadioGroup.Label as="p">{option.name}</RadioGroup.Label>
+                                            </RadioGroup.Option>
+                                        </Tooltip>
+                                    ))}
+                                </div>
+                            </RadioGroup>
                             <div className="mt-6 grid grid-cols-2 gap-10">
                                 <button type='button' onClick={handleAddToCart} className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-yellow-700 rounded-md hover:bg-yellow-600 focus:outline-none focus:bg-yellow-600">
                                     Thêm vào giỏ hàng
                                 </button>
-
-                                <button className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-yellow-700 rounded-md hover:bg-yellow-600 focus:outline-none focus:bg-yellow-600">
-                                    Đi đến giỏ hàng
-                                </button>
+                                <Link to='/cart'>
+                                    <button type='button' className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-yellow-700 rounded-md hover:bg-yellow-600 focus:outline-none focus:bg-yellow-600">
+                                        Đi đến giỏ hàng
+                                    </button>
+                                </Link>
                             </div>
                         </div>
                     </div>

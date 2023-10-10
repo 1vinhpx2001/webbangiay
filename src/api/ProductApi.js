@@ -11,7 +11,7 @@ export const getSortProducts = async (sort) =>{
 
 export const getProductByCategory = async (id,page,sort='') =>{
     try {
-        const response = await get(`/products/category/${id}?size=6&page=${page}&sort=${sort}`);
+        const response = await get(`/products/category/${id}?size=8&page=${page}&sort=${sort}`);
         return response
     } catch (error) { 
         return error.response.data 
@@ -36,4 +36,14 @@ export const addProductToCart = async (data={}) => {
     } catch (error) { 
         return error.response
     };
+}
+
+export const searchProduct = async (q,sort='') =>{
+    try {
+        const response = await get(`/products/search?q=${q}&sort=${sort}`);
+        return response
+    } catch (error) { 
+        return error.response.data 
+    };
+
 }

@@ -1,4 +1,4 @@
-import {get,put,postImage} from '../axios/Instance'
+import {get,put} from '../axios/Instance'
 
 export const forgotPassword = async (data,id) =>{
     try{

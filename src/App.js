@@ -22,7 +22,7 @@ function App() {
 
           <Route path="/" exact element={<Homepage></Homepage>}></Route>
 
-          <Route path="/product-list" exact element={<ProductList></ProductList>}></Route>
+          <Route path="/product-list/:id" element={<ProductList></ProductList>}></Route>
 
           <Route path="/login" exact element={<Login></Login>}></Route>
 
@@ -34,11 +34,11 @@ function App() {
 
           <Route path="/check-out" exact element={<CheckOut></CheckOut>}></Route>
 
-          <Route path="/product-detail/:productId" element={<ProductDetail></ProductDetail>}></Route>
+          <Route path="/product-detail/:id" element={<ProductDetail></ProductDetail>}></Route>
 
           <Route path="/forgot-password" exact element={<ForgotPassword></ForgotPassword>}></Route>
 
-          <Route path="/profile/:userId" element={<Profile></Profile>}></Route>
+          <Route path="/profile/:id" element={<Profile></Profile>}></Route>
      
         </Routes>
         <Footer />

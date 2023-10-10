@@ -8,6 +8,7 @@ import * as authAction from '../../redux/auth/authSlice'
 import Categories from './components/Categories'
 import { Tooltip } from '@nextui-org/react'
 import { getAllCategory } from '../../api/CategoryApi'
+import { KeyboardArrowDown } from '@mui/icons-material'
 export default function Header() {
   
   let userCurrent = getUserFromLocalStorage()
@@ -89,11 +90,12 @@ export default function Header() {
               content={<Categories categories={categories}/>}
               css={{ left: '$0', transform: 'none' }}
               placement='bottom'
+              
                >
-        <Link to='/product-list' 
-        className='font-bold hover:text-yellow-700 flex forcus:outline-0 outline-0'>
-        SẢN PHẨM 
-        </Link>
+        <p 
+        className='font-bold hover:text-yellow-700 cursor-default flex forcus:outline-0 outline-0'>
+        SẢN PHẨM <KeyboardArrowDown/> 
+        </p>
         </Tooltip>
         <Link to='/cart' className='font-bold hover:text-yellow-700'>GIỎ HÀNG</Link>
         <Link to='/order' className='font-bold hover:text-yellow-700'>ĐƠN HÀNG</Link>

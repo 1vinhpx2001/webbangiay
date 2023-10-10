@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { getUserByID, updateUserByID } from '../../api/UserApi'
-import { useLocation, useParams } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import validator from 'validator';
 import { getDistrict, getProvince, getWard } from '../../api/AuthApi';
-import { UpdateError, UpdateSuccessNavigate, UpdateSuccessReload } from '../../components/alert';
+import { UpdateError, UpdateSuccessReload } from '../../components/alert';
 import ChangePasswordModal from '../../components/modals/ChangePasswordModal';
 
 export default function Profile() {

@@ -10,13 +10,22 @@ module.exports = withMT({
     extend: {
       backgroundImage: {
         'shoesbg': "url('./assets/ShoesBackGround.jpg')",
-
       }
     },
   },
   darkMode: "class",
   plugins: [
-    nextui()
+    nextui(
+      {
+        theme:{
+          light:{
+            colors:{
+              amber:"#ffbf00",
+            },
+          }
+        }
+      }
+    )
   ],
 })
 
