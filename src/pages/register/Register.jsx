@@ -305,14 +305,14 @@ export default function Register() {
                                         id='name'
                                         value={name}
                                         onChange={handleChangeName}
-                                        className="block w-full px-4 py-2 mt-2 text-yellow-700 bg-white border rounded-md focus:border-yellow-400 focus:ring-yellow-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                                        className="block w-full px-4 py-2 mt-2  bg-white border rounded-md focus:border-yellow-400 focus:ring-yellow-300 focus:outline-none focus:ring focus:ring-opacity-40"
                                         required
                                     />
                                 </div>
 
                                 <div className='my-2'>
                                     <label htmlFor="gender" className="block text-sm font-semibold text-gray-800">Giới tính</label>
-                                    <select value={gender} id="gender" onChange={handleChangeGender} className="block w-full px-4 py-2 mt-2 text-yellow-700 bg-white border rounded-md focus:border-yellow-400 focus:ring-yellow-300 focus:outline-none focus:ring focus:ring-opacity-40">
+                                    <select value={gender} id="gender" onChange={handleChangeGender} className="block w-full px-4 py-2 mt-2  bg-white border rounded-md focus:border-yellow-400 focus:ring-yellow-300 focus:outline-none focus:ring focus:ring-opacity-40">
                                         <option value="male">Nam</option>
                                         <option value="female">Nữ</option>
                                     </select>
@@ -330,7 +330,7 @@ export default function Register() {
                                         id='email'
                                         value={email}
                                         onChange={handleChangeEmail}
-                                        className="block w-full px-4 py-2 mt-2 text-yellow-700 bg-white border rounded-md focus:border-yellow-400 focus:ring-yellow-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                                        className="block w-full px-4 py-2 mt-2  bg-white border rounded-md focus:border-yellow-400 focus:ring-yellow-300 focus:outline-none focus:ring focus:ring-opacity-40"
                                         required
                                     />
                                     <span id="errEmail"></span>
@@ -339,7 +339,7 @@ export default function Register() {
                                 <div className='grid grid-cols-2 gap-5 my-4'>
                                     <div>
                                         <label htmlFor="province" className="block text-sm font-semibold text-gray-800 ">Tỉnh/Thành phố</label>
-                                        <select value={province} onChange={handleChangeProvince} id="province" placeholder="Tỉnh/Thành phố" className=" block w-full px-4 py-2 mt-2 text-yellow-700 bg-white border rounded-md focus:border-yellow-400 focus:ring-yellow-300 focus:outline-none focus:ring focus:ring-opacity-40">
+                                        <select value={province} onChange={handleChangeProvince} id="province" placeholder="Tỉnh/Thành phố" className=" block w-full px-4 py-2 mt-2  bg-white border rounded-md focus:border-yellow-400 focus:ring-yellow-300 focus:outline-none focus:ring focus:ring-opacity-40">
                                             <option value="" disabled selected>Tỉnh/Thành phố</option>
                                             {provinces.map((provinceItem) => (
                                                 <option key={provinceItem.ProvinceID} value={provinceItem.ProvinceID}>
@@ -350,7 +350,7 @@ export default function Register() {
                                     </div>
                                     <div>
                                         <label htmlFor="district" className=" block text-sm font-semibold text-gray-800">Quận/Huyện</label>
-                                        <select value={district} onChange={handleChangeDistrict} id="district" placeholder="Quận/Huyện" className="block w-full px-4 py-2 mt-2 text-yellow-700 bg-white border rounded-md focus:border-yellow-400 focus:ring-yellow-300 focus:outline-none focus:ring focus:ring-opacity-40">
+                                        <select value={district} onChange={handleChangeDistrict} id="district" placeholder="Quận/Huyện" className="block w-full px-4 py-2 mt-2  bg-white border rounded-md focus:border-yellow-400 focus:ring-yellow-300 focus:outline-none focus:ring focus:ring-opacity-40">
                                             <option value="" disabled selected>Quận/Huyện</option>
                                             {districts.slice(1).map((districtItem) => (
                                                 <option key={districtItem.DistrictID} value={districtItem.DistrictID}>
@@ -363,7 +363,7 @@ export default function Register() {
                                 <div className='grid grid-cols-2 gap-5'>
                                     <div>
                                         <label htmlFor="ward" className="block text-sm font-semibold text-gray-800 ">Phường/Xã</label>
-                                        <select value={ward} onChange={handleChangeWard} id="ward" placeholder="Phường/Xã" className=" block w-full px-4 py-2 mt-2 text-yellow-700 bg-white border rounded-md focus:border-yellow-400 focus:ring-yellow-300 focus:outline-none focus:ring focus:ring-opacity-40">
+                                        <select value={ward} onChange={handleChangeWard} id="ward" placeholder="Phường/Xã" className=" block w-full px-4 py-2 mt-2  bg-white border rounded-md focus:border-yellow-400 focus:ring-yellow-300 focus:outline-none focus:ring focus:ring-opacity-40">
                                             <option value="" disabled selected>Phường/Xã</option>
                                             {wards.map((wardItem) => (
                                                 <option key={wardItem.WardCode} value={wardItem.WardCode}>
@@ -384,7 +384,7 @@ export default function Register() {
                                             id='address'
                                             value={address}
                                             onChange={handleChangeAddress}
-                                            className="block w-full px-4 py-2 mt-2 text-yellow-700 bg-white border rounded-md focus:border-yellow-400 focus:ring-yellow-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                                            className="block w-full px-4 py-2 mt-2  bg-white border rounded-md focus:border-yellow-400 focus:ring-yellow-300 focus:outline-none focus:ring focus:ring-opacity-40"
                                             required
                                         />
                                     </div>
@@ -402,7 +402,7 @@ export default function Register() {
                                         id='phone'
                                         value={phone}
                                         onChange={handleChangePhone}
-                                        className="remove-arrow block w-full px-4 py-2 mt-2 text-yellow-700 bg-white border rounded-md focus:border-yellow-400 focus:ring-yellow-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                                        className="remove-arrow block w-full px-4 py-2 mt-2  bg-white border rounded-md focus:border-yellow-400 focus:ring-yellow-300 focus:outline-none focus:ring focus:ring-opacity-40"
                                         required
                                     />
                                 </div>
@@ -418,7 +418,7 @@ export default function Register() {
                                         id='password'
                                         value={password}
                                         onChange={handleChangePassword}
-                                        className="block w-full px-4 py-2 mt-2 text-yellow-700 bg-white border rounded-md focus:border-yellow-400 focus:ring-yellow-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                                        className="block w-full px-4 py-2 mt-2  bg-white border rounded-md focus:border-yellow-400 focus:ring-yellow-300 focus:outline-none focus:ring focus:ring-opacity-40"
                                         required
                                     />
                                 </div>
@@ -434,7 +434,7 @@ export default function Register() {
                                         id='confirm'
                                         value={confirmPassword}
                                         onChange={handleChangeConfirmPassword}
-                                        className="block w-full px-4 py-2 mt-2 text-yellow-700 bg-white border rounded-md focus:border-yellow-400 focus:ring-yellow-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                                        className="block w-full px-4 py-2 mt-2  bg-white border rounded-md focus:border-yellow-400 focus:ring-yellow-300 focus:outline-none focus:ring focus:ring-opacity-40"
                                         required
                                     />
                                 </div>
@@ -458,7 +458,7 @@ export default function Register() {
                                         id='OTP'
                                         value={otp}
                                         onChange={handleChangeOtp}
-                                        className="block w-full px-4 py-2 mt-2 text-yellow-700 bg-white border rounded-md focus:border-yellow-400 focus:ring-yellow-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                                        className="block w-full px-4 py-2 mt-2  bg-white border rounded-md focus:border-yellow-400 focus:ring-yellow-300 focus:outline-none focus:ring focus:ring-opacity-40"
                                         required
                                     />
                                     <div className="mt-6">
