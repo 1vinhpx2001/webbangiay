@@ -63,3 +63,20 @@ export const resetPassword = async (data={}) =>{
          return error.response
     };
 }
+
+export const calShipingFee = async (data={}) =>{
+    try {
+        const response = await post('/shipping/fee',data);
+        return response.data
+    } catch (error) {
+         return error.response
+    };
+}
+export const getService = async (data={}) =>{
+    try {
+        const response = await post('/shipping/service',data);
+        return response.data
+    } catch (error) {
+         return error.response
+    };
+}

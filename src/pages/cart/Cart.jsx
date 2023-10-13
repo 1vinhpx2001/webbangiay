@@ -74,7 +74,7 @@ export default function Cart() {
         }
     };
     const handleClickOrder = () => {
-        navigate('/order');
+        navigate('/check-out');
     };
     return (
         <div>
