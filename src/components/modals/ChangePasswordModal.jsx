@@ -10,13 +10,17 @@ import { useLocation } from 'react-router-dom';
 import { changePassword } from '../../api/UserApi';
 
 export default function ChangePasswordModal({ isOpen }) {
-    
+
     const location = useLocation();
     const id = location.pathname.split("/")[2];
     const [oldPassword, setoldPassword] = useState('')
     const [newPassword, setnewPassword] = useState('')
     const [confirmPass, setConfirmPass] = useState('')
+    const [showPassword, setShowPassword] = useState(false);
 
+    const handleTogglePassword = () => {
+        setShowPassword(!showPassword);
+    };
     const handleChangeoldPassword = (e) => {
         setoldPassword(e.target.value)
     }
@@ -82,7 +86,7 @@ export default function ChangePasswordModal({ isOpen }) {
     }
     const handleClickChange = () => {
         changePass()
-        
+
     }
     return (
         <div
@@ -115,7 +119,7 @@ export default function ChangePasswordModal({ isOpen }) {
                                 Nhập mật khẩu cũ
                             </label>
                             <input
-                                type="text"
+                                type={showPassword ? 'text' : 'password'}
                                 id='oldPassword'
                                 value={oldPassword}
                                 onChange={handleChangeoldPassword}
@@ -131,7 +135,7 @@ export default function ChangePasswordModal({ isOpen }) {
                                 Nhập mật khẩu mới
                             </label>
                             <input
-                                type="text"
+                                type={showPassword ? 'text' : 'password'}
                                 id='newPassword'
                                 value={newPassword}
                                 onChange={handleChangenewPassword}
@@ -147,7 +151,7 @@ export default function ChangePasswordModal({ isOpen }) {
                                 Nhập lại mật khẩu mới
                             </label>
                             <input
-                                type="text"
+                                type={showPassword ? 'text' : 'password'}
                                 id='confirmPassword'
                                 value={confirmPass}
                                 onChange={handleChangeConfirmPass}
@@ -155,6 +159,12 @@ export default function ChangePasswordModal({ isOpen }) {
                                 required
                             />
                         </div>
+
+                        <div className='flex gap-2 mt-4'>
+                            <input type="checkbox" className='accent-yellow-700' checked={showPassword} onChange={handleTogglePassword} />
+                            <label className='text-sm'>Hiện mật khẩu</label>
+                        </div>
+
                         <div className="mt-6 grid grid-cols-2 gap-16">
                             <button type='button' onClick={() => isOpen(false)} className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-red-700 rounded-md hover:bg-red-600 focus:outline-none focus:bg-red-600">
                                 Hủy bỏ

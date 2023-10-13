@@ -9,17 +9,22 @@ export default function Login() {
 
     const dispatch = useDispatch();
     let navigate = useNavigate();
-    
+
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
+
+    const handleTogglePassword = () => {
+        setShowPassword(!showPassword);
+    };
 
     const login = async ({ username, password }) => {
-    
+
         const res = await userLogin({ username, password })
-        
+
         if (res.data.success) {
             await dispatch(authAction.login(res.data));
-            navigate('/') 
+            navigate('/')
         }
         else {
             let message = "Sai tài khoản hoặc mật khẩu";
@@ -75,7 +80,7 @@ export default function Login() {
                                 </label>
                                 <input
                                     tabIndex={2}
-                                    type="password"
+                                    type={showPassword ? 'text' : 'password'}
                                     id='password'
                                     value={password}
                                     onChange={onChangePasswordHanle}
@@ -83,9 +88,18 @@ export default function Login() {
                                     required
                                 />
                             </div>
-                            <Link to='/forgot-password' className="text-xs text-yellow-600 hover:underline">
-                                Quên mật khẩu?
-                            </Link>
+
+                            <div className='flex justify-between mt-4'>
+                                <div className='flex gap-2'>
+                                    <input type="checkbox" className='accent-yellow-700' checked={showPassword} onChange={handleTogglePassword} />
+                                    <label className='text-sm'>Hiện mật khẩu</label>
+                                </div>
+
+                                <Link to='/forgot-password' className="text-sm text-yellow-700 hover:underline">
+                                    Quên mật khẩu?
+                                </Link>
+                            </div>
+
                             <div className="mt-6">
                                 <button type='button' onClick={handleLogin} className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-yellow-700 rounded-md hover:bg-yellow-600 focus:outline-none focus:bg-yellow-600">
                                     Đăng nhập
@@ -104,7 +118,7 @@ export default function Login() {
                     </div>
                 </div>
             </div>
-            <ToastContainer/>
+            <ToastContainer />
         </div>
     )
 }
