@@ -6,6 +6,7 @@ import ForgotPassword from "./pages/forgotpassword/ForgotPassword";
 import Homepage from "./pages/homepage/Homepage";
 import Login from "./pages/login/Login";
 import Order from "./pages/order/Order";
+import OrderDetail from "./pages/orderdetail/OrderDetail";
 import ProductDetail from "./pages/productdetail/ProductDetail";
 import ProductList from "./pages/productlist/ProductList";
 import Profile from "./pages/profile/Profile";
@@ -23,6 +24,7 @@ function App() {
           <Route path="/" exact element={<Homepage></Homepage>}></Route>
 
           <Route path="/product-list/:id" element={<ProductList></ProductList>}></Route>
+
           <Route path="/search" element={<ProductList></ProductList>}></Route>
 
           <Route path="/login" exact element={<Login></Login>}></Route>
@@ -40,7 +42,9 @@ function App() {
           <Route path="/forgot-password" exact element={<ForgotPassword></ForgotPassword>}></Route>
 
           <Route path="/profile/:id" element={<Profile></Profile>}></Route>
-     
+
+          <Route path="/order-detail/:id" element={<OrderDetail></OrderDetail>}></Route>
+
         </Routes>
         <Footer />
       </BrowserRouter>

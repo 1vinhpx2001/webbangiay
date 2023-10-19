@@ -1,177 +1,149 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { getOrders } from '../../api/UserApi';
+import { useAsyncList } from "@react-stately/data";
+import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Pagination, Chip } from "@nextui-org/react";
+import { Link } from 'react-router-dom';
+
+
 
 export default function Order() {
+  const formatPrice = (value) =>
+    new Intl.NumberFormat('vi-VN', {
+      style: 'currency',
+      currency: 'VND',
+    }).format(value);
+  const [order, setOrder] = useState([])
+  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    async function getData() {
+      setLoading(true);
+      let res = await getOrders();
+      if (res.success) {
+        let temp1 = res.data.filter((order) => order.state !== 'enable');
+        setOrder(temp1);
+        setLoading(false);
+      } else {
+        setLoading('404');
+      }
+    }
+    getData();
+  }, []);
+
+  async function load() {
+    return { items: order }
+  }
+  async function sort({ items, sortDescriptor }) {
+    return {
+      items: items.sort((a, b) => {
+        let first = a[sortDescriptor.column];
+        let second = b[sortDescriptor.column];
+        let cmp = (parseInt(first) || first) < (parseInt(second) || second) ? -1 : 1;
+
+        if (sortDescriptor.direction === "descending") {
+          cmp *= -1;
+        }
+
+        return cmp;
+      }),
+    };
+  }
+  const state = {
+    'enable': 'Hiện tại',
+    'done': 'Hoàn tất',
+    'process': 'Đang xử lý',
+    'pending': 'Đang chờ xác nhận',
+    'delivery': 'Đang giao hàng',
+    'delivered': 'Đã giao hàng',
+    'prepare': 'Đang chuẩn bị hàng',
+    'cancel': 'Đã hủy',
+  }
+
+  const statusColorMap = {
+    pending: "warning",
+    done: "success",
+    enable: "primary",
+    cancel:"danger",
+    process:"secondary"
+  }
+
+  const list = useAsyncList({ load, sort });
+  useEffect(() => {
+    list.reload()
+  }, [order])
+
+  const [page, setPage] = React.useState(1);
+  const rowsPerPage = 5;
+
+  const pages = Math.ceil(order.length / rowsPerPage);
+
+  list.items = React.useMemo(() => {
+    const start = (page - 1) * rowsPerPage;
+    const end = start + rowsPerPage;
+
+    return order.slice(start, end);
+  }, [page, order]);
+
   return (
     <div>
-      <div className=' bg-white w-10/12 rounded-lg mx-auto my-10 h-16 drop-shadow-lg flex justify-center items-center'>
+      <div className='bg-white w-10/12 rounded-lg mx-auto my-10 h-16 drop-shadow-lg flex justify-center items-center'>
         <p className='text-yellow-600 text-xl font-semibold'>ĐƠN HÀNG CỦA BẠN</p>
       </div>
 
-      <div className=' bg-white w-10/12 rounded-lg mx-auto my-10 h-16 drop-shadow-lg grid grid-cols-6 pl-16 items-center'>
-
-        <div>
-          <div className="mb-[0.125rem] block min-h-[1.5rem] pl-[1.5rem]">
-            <input
-              type="radio"
-              name="flexRadioDefault"
-              id="radioDefault01"
-              defaultChecked />
-            <label
-              className='text-base font-semibold text-blue-gray-900 mx-3'
-              htmlFor="radioDefault01">
-              TẤT CẢ
-            </label>
-          </div>
-        </div>
-
-        <div>
-          <div className="mb-[0.125rem] block min-h-[1.5rem] pl-[1.5rem]">
-            <input
-              type="radio"
-              name="flexRadioDefault"
-              id="radioDefault02"
+      <Table
+        aria-label="Example table with client side sorting"
+        sortDescriptor={list.sortDescriptor}
+        onSortChange={list.sort}
+        classNames={{
+          table: "min-h-[400px]",
+        }}
+        bottomContent={
+          <div className="flex w-full justify-center">
+            <Pagination
+              color="warning"
+              page={page}
+              total={pages}
+              onChange={(page) => setPage(page)}
             />
-            <label
-              className='text-base font-semibold text-blue-gray-900 mx-3'
-              htmlFor="radioDefault02">
-              CHỜ XÁC NHẬN
-            </label>
           </div>
-        </div>
-
-        <div>
-          <div className="mb-[0.125rem] block min-h-[1.5rem] pl-[1.5rem]">
-            <input
-              type="radio"
-              name="flexRadioDefault"
-              id="radioDefault03"
-              defaultChecked />
-            <label
-              className='text-base font-semibold text-blue-gray-900 mx-3'
-              htmlFor="radioDefault03">
-              ĐANG XỬ LÝ
-            </label>
-          </div>
-        </div>
-
-        <div>
-          <div className="mb-[0.125rem] block min-h-[1.5rem] pl-[1.5rem]">
-            <input
-              type="radio"
-              name="flexRadioDefault"
-              id="radioDefault04"
-              defaultChecked />
-            <label
-              className='text-base font-semibold text-blue-gray-900 mx-3'
-              htmlFor="radioDefault04">
-              ĐANG VẬN CHUYỂN
-            </label>
-          </div>
-        </div>
-
-        <div>
-          <div className="mb-[0.125rem] block min-h-[1.5rem] pl-[1.5rem]">
-            <input
-              type="radio"
-              name="flexRadioDefault"
-              id="radioDefault05"
-              defaultChecked />
-            <label
-              className='text-base font-semibold text-blue-gray-900 mx-3'
-              htmlFor="radioDefault05">
-              ĐÃ GIAO
-            </label>
-          </div>
-        </div>
-
-        <div>
-          <div className="mb-[0.125rem] block min-h-[1.5rem] pl-[1.5rem]">
-            <input
-              type="radio"
-              name="flexRadioDefault"
-              id="radioDefault06"
-              defaultChecked />
-            <label
-              className='text-base font-semibold text-blue-gray-900 mx-3'
-              htmlFor="radioDefault06">
-              ĐÃ HỦY
-            </label>
-          </div>
-        </div>
-
-      </div>
-
-
-      <div className="relative overflow-x-auto shadow-md sm:rounded-lg w-10/12 mx-auto my-10 h-[400px]">
-        <table className="w-full text-lg text-left text-gray-500 dark:text-gray-400">
-          <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 sticky top-0">
-            <tr>
-              <th scope="col" className="px-6 py-3">
-                Đơn Hàng
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Ngày Tạo
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Tình Trạng Thanh Toán
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Tình Trạng Vận Chuyển
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Tổng Tiền
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Hủy
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr className="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
-              <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                Apple MacBook Pro 17"
-              </th>
-              <td className="px-6 py-4 ">
-                Silver
-              </td>
-              <td className="px-6 py-4">
-                Laptop
-              </td>
-              <td className="px-6 py-4">
-                $2999
-              </td>
-              <td className="px-6 py-4">
-                Laptop
-              </td>
-              <td className="px-6 py-4">
-                <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-              </td>
-            </tr>
-            
-            <tr className="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
-              <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                Apple MacBook Pro 17"
-              </th>
-              <td className="px-6 py-4 ">
-                Silver
-              </td>
-              <td className="px-6 py-4">
-                Laptop
-              </td>
-              <td className="px-6 py-4">
-                $2999
-              </td>
-              <td className="px-6 py-4">
-                Laptop
-              </td>
-              <td className="px-6 py-4">
-                <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
+        }
+      >
+        <TableHeader>
+          <TableColumn key="id" allowsSorting>
+            MÃ ĐƠN HÀNG
+          </TableColumn>
+          <TableColumn key="createdDate" allowsSorting>
+            NGÀY ĐẶT
+          </TableColumn>
+          <TableColumn key="userName" allowsSorting>
+            NGƯỜI ĐẶT
+          </TableColumn>
+          <TableColumn key="totalPrice" allowsSorting>
+            TỔNG SỐ TIỀN
+          </TableColumn>
+          <TableColumn key="totalQuantity" allowsSorting>
+            SỐ LƯỢNG SẢN PHẨM
+          </TableColumn>
+          <TableColumn key="state" allowsSorting>
+            TRẠNG THÁI
+          </TableColumn>
+        </TableHeader>
+        <TableBody items={list.items} loadingState={list.loadingState} className='flex gap-2'>
+          {(row) => (
+            <TableRow key={row.id}>
+              <TableCell><Link to={`/order-detail/${row.id}`} className='hover:text-yellow-700'>{row.id}</Link></TableCell>
+              <TableCell >{row.createdDate}</TableCell>
+              <TableCell >{row.userName}</TableCell>
+              <TableCell >{formatPrice(row.totalPrice)}</TableCell>
+              <TableCell >{row.totalProduct}</TableCell>
+              <TableCell >
+                <Chip className="capitalize" color={statusColorMap[row.state]} size="sm" variant="flat">
+                {state[row.state]}
+                </Chip>
+              </TableCell>
+            </TableRow>
+          )}
+        </TableBody>
+      </Table>
 
 
     </div>
