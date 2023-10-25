@@ -20,6 +20,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { filter } from 'smart-array-filter';
 import { Slider } from '@mui/material';
 import { FilterAlt } from '@mui/icons-material';
+import LoadingCard from '../../components/loadingcard/LoadingCard';
 
 
 
@@ -166,7 +167,7 @@ export default function ProductList() {
                                                 max={5000000}
                                                 min={100000}
                                                 disableSwap
-                                               
+
                                                 valueLabelFormat={value => formatPrice(value)}
                                             />
                                             <div className="text-small font-bold">Giới tính</div>
@@ -210,42 +211,48 @@ export default function ProductList() {
                             </div>
                         </div>
                     </div>
-                    <div className='grid grid-cols-4 gap-10'>
-                        {filterProduct?.map((product) => (
-                            <div>
-                                <Card className="w-full max-w-[280px] max-h-[430] shadow-lg">
-                                    <CardHeader floated={false} color="blue-gray" className=' z-9 w-[240px] h-[240px]'>
-                                        <Badge color='green' content={'- ' + product.discount + '%'} className='mr-4 mt-2'>
-                                            <Link to={`/product-detail/${product.id}`}>
+                    <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 '>
+                        {loading ?
+                            Array.from(new Array(8)).map(() => (
+                                <div>
+                                    <LoadingCard/>
+                                </div>
+                            )) :
+                            filterProduct?.map((product) => (
+                                <div>
+                                    <Card className="w-full max-w-[280px] max-h-[430] shadow-lg">
+                                        <CardHeader floated={false} color="blue-gray" className=' z-9 w-[240px] h-[240px]'>
+                                            <Badge color='green' content={'- ' + product.discount + '%'} className='mr-4 mt-2'>
+                                                <Link to={`/product-detail/${product.id}`}>
 
-                                                <img className=' w-[240px] h-[240px] transition duration-300 ease-in-out hover:scale-110 '
-                                                    src={product.images[0]?.url}
-                                                    alt={product.name}
-                                                />
-                                            </Link>
-                                        </Badge>
-                                    </CardHeader>
-                                    <CardBody>
-                                        <div className="mb-3 flex items-center justify-between">
-                                            <Typography variant="h5" color="blue-gray" className="font-medium overflow-hidden text-ellipsis whitespace-nowrap">
-                                                {product.name}
-                                            </Typography>
-                                        </div>
-                                        <div className='flex justify-between'>
-                                            <Typography color="gray">
-                                                <del>{product.discount > 0 ? formatPrice(product.price) : ''}</del>
-                                            </Typography>
-                                            <Typography color="gray">
-                                                {formatPrice(product.discountPrice)}
-                                            </Typography>
-                                        </div>
-                                        <div>
-                                            <Rating unratedColor='amber' ratedColor='amber' readonly></Rating>
-                                        </div>
-                                    </CardBody>
-                                </Card>
-                            </div>
-                        ))}
+                                                    <img className=' w-[240px] h-[240px] transition duration-300 ease-in-out hover:scale-110 '
+                                                        src={product.images[0]?.url}
+                                                        alt={product.name}
+                                                    />
+                                                </Link>
+                                            </Badge>
+                                        </CardHeader>
+                                        <CardBody>
+                                            <div className="mb-3 flex items-center justify-between">
+                                                <Typography variant="h5" color="blue-gray" className="font-medium overflow-hidden text-ellipsis whitespace-nowrap">
+                                                    {product.name}
+                                                </Typography>
+                                            </div>
+                                            <div className='flex justify-between'>
+                                                <Typography color="gray">
+                                                    <del>{product.discount > 0 ? formatPrice(product.price) : ''}</del>
+                                                </Typography>
+                                                <Typography color="gray">
+                                                    {formatPrice(product.discountPrice)}
+                                                </Typography>
+                                            </div>
+                                            <div>
+                                                <Rating unratedColor='amber' ratedColor='amber' readonly></Rating>
+                                            </div>
+                                        </CardBody>
+                                    </Card>
+                                </div>
+                            ))}
                     </div>
                 </div>
 

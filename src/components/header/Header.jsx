@@ -45,8 +45,7 @@ export default function Header() {
     dispatch(authAction.logout())
   }
   return (
-    <div >
-
+    <div className='w-full' >
       <div className='flex items-center justify-end pr-6 py-2'>
         <Link to='/' className='pr-2 hover:text-yellow-700'>👑 SneakerHead</Link>
         {userCurrent?.id !== undefined ? <>

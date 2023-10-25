@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { getUserFromLocalStorage } from '../../utils/userHandle';
 import IconDeleteItem from '../../components/icons/IconDeleteItem';
 import { Skeleton } from '@mui/material';
+import { Spinner } from '@nextui-org/react';
 
 
 export default function Cart() {
@@ -84,10 +85,18 @@ export default function Cart() {
                 </div>
 
                 <div className='w-10/12 mx-auto text-lg font-semibold'>{cart?.totalProduct || 0}&nbsp;Sản phẩm</div>
-
+                {!cart ? (
+                        <div className='w-10/12 mx-auto h-[300px] flex justify-center items-center'>
+                        <Spinner color='warning' label='Đang tải...'></Spinner>
+                        </div>
+                ) :
+                    cart === '404' ? (
+                    <div className='w-10/12 mx-auto h-[300px] flex justify-center items-center text-lg font-semibold text-gray-600 my-10 bg-gray-300 '>
+                        Không có sản phẩm
+                    </div>     
+                ):<></>}
                 <div className="w-10/12 mx-auto flex gap-10">
                     <div className="rounded-lg w-2/3">
-
                         {cart?.items?.map((cartItem) => (
                             <div className="justify-between mb-6 rounded-lg bg-white p-6 shadow-md sm:flex sm:justify-start">
                                 <img src={cartItem.image} alt="product-image" className="w-full rounded-lg sm:w-40" />

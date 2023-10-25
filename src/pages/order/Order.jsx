@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { getOrders } from '../../api/UserApi';
 import { useAsyncList } from "@react-stately/data";
-import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Pagination, Chip } from "@nextui-org/react";
+import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Pagination, Chip, Spinner } from "@nextui-org/react";
 import { Link } from 'react-router-dom';
-
-
 
 export default function Order() {
   const formatPrice = (value) =>
@@ -42,7 +40,6 @@ export default function Order() {
         if (sortDescriptor.direction === "descending") {
           cmp *= -1;
         }
-
         return cmp;
       }),
     };
@@ -63,7 +60,10 @@ export default function Order() {
     done: "success",
     enable: "primary",
     cancel:"danger",
-    process:"secondary"
+    process:"secondary",
+    delivery:"default",
+    delivered:"default",
+    prepare:"warning"
   }
 
   const list = useAsyncList({ load, sort });
@@ -127,10 +127,10 @@ export default function Order() {
             TRẠNG THÁI
           </TableColumn>
         </TableHeader>
-        <TableBody items={list.items} loadingState={list.loadingState} className='flex gap-2'>
+        <TableBody items={list.items} isLoading={loading} loadingContent={<Spinner color='warning' label='Đang tải...'></Spinner>}>
           {(row) => (
             <TableRow key={row.id}>
-              <TableCell><Link to={`/order-detail/${row.id}`} className='hover:text-yellow-700'>{row.id}</Link></TableCell>
+              <TableCell ><Link to={`/order-detail/${row.id}`} className='hover:text-yellow-700'>{row.id}</Link></TableCell>
               <TableCell >{row.createdDate}</TableCell>
               <TableCell >{row.userName}</TableCell>
               <TableCell >{formatPrice(row.totalPrice)}</TableCell>

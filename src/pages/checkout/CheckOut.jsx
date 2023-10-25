@@ -102,7 +102,7 @@ export default function CheckOut() {
                     to_district_id: district,
                     to_ward_code: ward,
                     weight: 30 * cart.totalProduct < 30000 ? 30 * cart.totalProduct : 30000,
-                    height: cart.totalProduct < 150 ? cart.totalProduct : 150,
+                    height: 10 * cart.totalProduct < 150 ? 10* cart.totalProduct : 150,
                 });
                 if (fee.code === 200) {
                     setShippingFee(fee.data.total);
@@ -261,8 +261,7 @@ export default function CheckOut() {
             if (res.data.success) {
                 if (paymentType === 'cod') {
                     UpdateSuccessReload(wait, 'Đặt hàng thành công', false);
-                    window.location.href = '/redirect/payment?success=true&cancel=false'
-
+                    window.location.href = '/order'
                 } else {
                     window.location.href = res.data.data;
                 }
