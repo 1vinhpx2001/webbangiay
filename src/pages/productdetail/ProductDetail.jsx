@@ -184,7 +184,7 @@ export default function ProductDetail() {
                                     </div>
                                     <h6 className='text-2xl font-semibold text-red-600'>Giá bán :&nbsp;{formatPrice(product.discountPrice + extraFee)}</h6>
                                     <h6 className='text-lg font-semibold'>
-                                        Giá gốc: <del>Giá gốc:&nbsp;{formatPrice(product.price + extraFee)}</del>
+                                        Giá gốc: <del>&nbsp;{formatPrice(product.price + extraFee)}</del>
                                     </h6>
                                     <RadioGroup className="mt-2" value={productOptionId} onChange={handleChangeSize}>
                                         <div>Chọn size:</div>
@@ -243,7 +243,7 @@ export default function ProductDetail() {
                             <div className='my-5 flex justify-between'>
                                {newProduct?.slice(0,4).map((product) => (
                                 <Card key={product.id} className="w-full max-w-[280px] max-h-[430] shadow-lg">
-                                <Badge size="square" content="Hot">
+                                
                                   <CardHeader floated={false} color="blue-gray" className='w-[240px] h-[240px]'>
                                     <Badge color='green' content={'- ' + product.discount + '%'} className='mr-4 mt-2'>
                                       <Link to={`/product-detail/${product.id}`}>
@@ -254,7 +254,7 @@ export default function ProductDetail() {
                                       </Link>
                                     </Badge>
                                   </CardHeader>
-                                </Badge>
+                                
                                 <CardBody>
                                   <div className="mb-3 flex items-center justify-between">
                                     <Typography variant="h5" color="blue-gray" className="font-medium overflow-hidden text-ellipsis whitespace-nowrap">

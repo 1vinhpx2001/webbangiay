@@ -35,7 +35,7 @@ export default function ProductList() {
     function valuetext(value) {
         return `${formatPrice(value)}`;
     }
-    const [value, setValue] = useState([100000, 5000000]);
+    const [value, setValue] = useState([100000, 10000000]);
 
     const handleChange = (e, newValue) => {
         setValue(newValue);
@@ -137,7 +137,7 @@ export default function ProductList() {
     }
     const resetFilter = () => {
         setCol([])
-        setValue([100000, 5000000])
+        setValue([100000, 10000000])
         setGender([])
         setFilter(products.list)
     }
@@ -164,7 +164,7 @@ export default function ProductList() {
                                                 valueLabelDisplay="auto"
                                                 getAriaValueText={valuetext}
                                                 step={50000}
-                                                max={5000000}
+                                                max={10000000}
                                                 min={100000}
                                                 disableSwap
 
