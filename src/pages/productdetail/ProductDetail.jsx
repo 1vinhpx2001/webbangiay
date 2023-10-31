@@ -140,11 +140,11 @@ export default function ProductDetail() {
                     {loading ? (
                         <Spinner color='warning' label='Đang tải...'></Spinner>)
                         : (
-                            <div className='flex flex-row justify-between gap-10 '>
-                                <div className='flex flex-col gap-6 w-2/4'>
+                            <div className='flex flex-col justify-between lg:flex-row gap-16 lg:items-center '>
+                                <div className='flex flex-col gap-6 lg:w-2/4'>
                                     {product?.images?.slice(0, 1).map((image) => (
                                         <div key={`${image.imageId}`}>
-                                            <img src={`${image.url}`} id='firstImage' alt="...loading" className='w-5/6 h-5/6 object-cover aspect-square rounded-xl mx-auto' />
+                                            <img src={`${image.url}`} id='firstImage' alt="...loading" className='w-full h-full aspect-square object-cover rounded-xl' />
                                         </div>
                                     ))}
 
@@ -157,7 +157,7 @@ export default function ProductDetail() {
                                     </div>
                                 </div>
                                 {/* ABOUT */}
-                                <div className='flex flex-col gap-3 w-2/4'>
+                                <div className='flex flex-col gap-4 lg:w-2/4'>
                                     <div>
                                         <h1 className='text-3xl font-bold'>{product.name}</h1>
                                         <div className='flex flex-row justify-between'>
@@ -240,7 +240,7 @@ export default function ProductDetail() {
                             : newProduct?.length === 0 ?(
                                 <div>Không tìm thấy sản phẩm nào</div>
                             ):(
-                            <div className='my-5 flex justify-between'>
+                            <div className='my-5 flex gap-5'>
                                {newProduct?.slice(0,4).map((product) => (
                                 <Card key={product.id} className="w-full max-w-[280px] max-h-[430] shadow-lg">
                                 

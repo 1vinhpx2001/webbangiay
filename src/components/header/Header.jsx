@@ -8,8 +8,6 @@ import * as authAction from '../../redux/auth/authSlice'
 import Categories from './components/Categories'
 import { Tooltip } from '@nextui-org/react'
 import { getAllCategory } from '../../api/CategoryApi'
-import { KeyboardArrowDown } from '@mui/icons-material'
-import IconMenu from '../icons/IconMenu'
 import IconCart from '../icons/IconCart'
 export default function Header() {
 
