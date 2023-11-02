@@ -146,9 +146,9 @@ export default function ProductList() {
 
             <div className='ml-6 flex flex-col justify-between'>
                 <div>
-                    <div className='flex justify-between'>
-                        <p className='text-xl text-yellow-700 font-semibold mt-10 ml-5'>SẢN PHẨM NỔI BẬT</p>
-                        <div className='mt-10 flex gap-2'>
+                    <div className='sm:flex sm:justify-between'>
+                        <p className='text-xl text-yellow-700 font-semibold mt-10 '>SẢN PHẨM NỔI BẬT</p>
+                        <div className='mb-5 mt-5 sm:mt-10 flex gap-2'>
                             <div>
                                 <Popover placement="bottom">
                                     <PopoverTrigger>
@@ -211,7 +211,7 @@ export default function ProductList() {
                             </div>
                         </div>
                     </div>
-                    <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 '>
+                    <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 '>
                         {loading ?
                             Array.from(new Array(8)).map(() => (
                                 <div>
@@ -220,12 +220,11 @@ export default function ProductList() {
                             )) :
                             filterProduct?.map((product) => (
                                 <div>
-                                    <Card className="w-full max-w-[280px] max-h-[430] shadow-lg">
-                                        <CardHeader floated={false} color="blue-gray" className=' z-9 w-[240px] h-[240px]'>
+                                    <Card className="w-full max-w-[280px] max-h-[430px] shadow-lg">
+                                        <CardHeader floated={false} color="blue-gray">
                                             <Badge color='green' content={'- ' + product.discount + '%'} className='mr-4 mt-2'>
-                                                <Link to={`/product-detail/${product.id}`}>
-
-                                                    <img className=' w-[240px] h-[240px] transition duration-300 ease-in-out hover:scale-110 '
+                                                <Link to={`/product-detail/${product.id}`} className='h-full'>
+                                                    <img className='h-[300px] transition duration-300 ease-in-out hover:scale-110'
                                                         src={product.images[0]?.url}
                                                         alt={product.name}
                                                     />

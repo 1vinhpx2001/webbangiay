@@ -16,8 +16,9 @@ import {
     Typography,
     Rating,
     Badge,
-  } from "@material-tailwind/react";
-  
+    CardFooter
+} from "@material-tailwind/react";
+
 export default function ProductDetail() {
 
     const [loading, SetLoad] = useState(false);
@@ -232,52 +233,49 @@ export default function ProductDetail() {
 
                 {/* Sản phẩm liên quan */}
                 <div>
-                        <p className='text-xl text-yellow-700 font-semibold mt-16'>Sản phẩm liên quan</p>
-                        {loading ?
-                             (
+                    <p className='text-xl text-yellow-700 font-semibold mt-16'>Sản phẩm liên quan</p>
+                    {loading ?
+                        (
                             <Spinner color='warning' label='Đang tải...'></Spinner>
-                            )
-                            : newProduct?.length === 0 ?(
-                                <div>Không tìm thấy sản phẩm nào</div>
-                            ):(
-                            <div className='my-5 flex gap-5'>
-                               {newProduct?.slice(0,4).map((product) => (
-                                <Card key={product.id} className="w-full max-w-[280px] max-h-[430] shadow-lg">
-                                
-                                  <CardHeader floated={false} color="blue-gray" className='w-[240px] h-[240px]'>
-                                    <Badge color='green' content={'- ' + product.discount + '%'} className='mr-4 mt-2'>
-                                      <Link to={`/product-detail/${product.id}`}>
-                                        <img className=' w-[240px] h-[240px] transition duration-300 ease-in-out hover:scale-110 '
-                                          src={product.images[0]?.url}
-                                          alt={product.name}
-                                        />
-                                      </Link>
-                                    </Badge>
-                                  </CardHeader>
-                                
-                                <CardBody>
-                                  <div className="mb-3 flex items-center justify-between">
-                                    <Typography variant="h5" color="blue-gray" className="font-medium overflow-hidden text-ellipsis whitespace-nowrap">
-                                      {product.name}
-                                    </Typography>
-                                  </div>
-                                  <div className='flex justify-between'>
-                                    <Typography color="gray">
-                                      <del>{product.discount > 0 ? formatPrice(product.price) : ''}</del>
-                                    </Typography>
-                                    <Typography color="gray">
-                                      {formatPrice(product.discountPrice)}
-                                    </Typography>
-                                  </div>
-                                  <div >
-                                    <Rating unratedColor='amber' ratedColor='amber' readonly></Rating>
-                                  </div>
-                                </CardBody>
-                              </Card>
-                               ))}
-                            </div>)}
-                  
+                        )
+                        : newProduct?.length === 0 ? (
+                            <div>Không tìm thấy sản phẩm nào</div>
+                        ) : (
+                            <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5'>
+                                {newProduct?.slice(0, 4).map((product) => (
+                                        <Card key={product.id} className="w-full max-w-[280px] max-h-[430px] shadow-lg">
+                                          <CardHeader floated={false} color="blue-gray"  >
+                                            <Badge color='green' content={'- ' + product.discount + '%'} className='mr-4 mt-2'>
+                                              <Link to={`/product-detail/${product.id}`}>
+                                                <img className='h-[300px] transition duration-300 ease-in-out hover:scale-110  '
+                                                  src={product.images[0]?.url}
+                                                  alt={product.name}
+                                                />
+                                              </Link>
+                                            </Badge>
+                                          </CardHeader>
 
+                                        <CardBody>
+                                          <div className="mb-3 flex items-center justify-between">
+                                            <Typography variant="h5" color="blue-gray" className="font-medium overflow-hidden text-ellipsis whitespace-nowrap">
+                                              {product.name}
+                                            </Typography>
+                                          </div>
+                                          <div className='flex justify-between'>
+                                            <Typography color="gray">
+                                              <del>{product.discount > 0 ? formatPrice(product.price) : ''}</del>
+                                            </Typography>
+                                            <Typography color="gray">
+                                              {formatPrice(product.discountPrice)}
+                                            </Typography>
+                                          </div>
+                                          <div >
+                                            <Rating unratedColor='amber' ratedColor='amber' readonly></Rating>
+                                          </div>
+                                        </CardBody>
+                                      </Card>
+                                ))}
+                            </div>)}
                 </div>
             </div>
             <ToastContainer />
