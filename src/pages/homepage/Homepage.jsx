@@ -58,7 +58,7 @@ export default function Homepage() {
     // getRecommend()
   }, []);
   return (
-    <div>
+    <div className='mt-5'>
       <CarouselHome />
       <div className='w-10/12 mx-auto my-5 '>
         {/* Sản phẩm mới section */}
