@@ -60,7 +60,7 @@ export default function Homepage() {
   return (
     <div>
       <CarouselHome />
-      <div className='w-[1200px] mx-auto my-5 '>
+      <div className='w-10/12 mx-auto my-5 '>
         {/* Sản phẩm mới section */}
         <p className='text-xl text-yellow-700 font-semibold mt-16'>SẢN PHẨM MỚI</p>
         <div className='my-2'>
@@ -69,9 +69,7 @@ export default function Homepage() {
               delay: 2500,
               disableOnInteraction: false,
             }}
-
-            slidesPerView={4}
-            spaceBetween={30}
+            spaceBetween={0}
             pagination={{
               clickable: true,
             }}
@@ -80,6 +78,20 @@ export default function Homepage() {
               '--swiper-navigation-color': '#f5bd24',
             }}
             modules={[Autoplay, Navigation]}
+            breakpoints={{
+              640: {
+                slidesPerView: 1,
+                spaceBetween: 0,
+              },
+              768: {
+                slidesPerView: 2,
+                spaceBetween: 0,
+              },
+              1024: {
+                slidesPerView: 4,
+                spaceBetween: 0,
+              },
+            }}
             className="mySwiper"
           >
             {newProduct.length === 0 ? Array.from(new Array(6)).map((index) => (
@@ -87,44 +99,44 @@ export default function Homepage() {
                 <LoadingCard></LoadingCard>
               </SwiperSlide>
             )) :
-            newProduct.map((product) =>
-            (
-              <SwiperSlide key={product.id} className='p-4'>
+              newProduct.map((product) =>
+              (
+                <SwiperSlide key={product.id} className='p-4'>
 
-                <Card className="w-full max-w-[280px] max-h-[430] shadow-lg">
-                  <Badge color='amber' size="square" content="New">
-                    <CardHeader floated={false} color="blue-gray" className=' z-9 w-[240px] h-[240px]'>
-                      <Badge color='green' content={'- ' + product.discount + '%'} className='mr-4 mt-2'>
-                        <Link to={`/product-detail/${product.id}`}>
-                          <img className=' w-[240px] h-[240px] transition duration-300 ease-in-out hover:scale-110 '
-                            src={product.images[0]?.url}
-                            alt={product.name}
-                          />
-                        </Link>
-                      </Badge>
-                    </CardHeader>
-                  </Badge>
-                  <CardBody>
-                    <div className="mb-3 flex items-center justify-between">
-                      <Typography variant="h5" color="blue-gray" className="font-medium overflow-hidden text-ellipsis whitespace-nowrap">
-                        {product.name}
-                      </Typography>
-                    </div>
-                    <div className='flex justify-between'>
-                      <Typography color="gray">
-                        <del>{product.discount > 0 ? formatPrice(product.price) : ''}</del>
-                      </Typography>
-                      <Typography color="gray">
-                        {formatPrice(product.discountPrice)}
-                      </Typography>
-                    </div>
-                    <div>
-                      <Rating unratedColor='amber' ratedColor='amber' readonly></Rating>
-                    </div>
-                  </CardBody>
-                </Card>
-              </SwiperSlide>
-            ))}
+                  <Card className="w-full max-w-[280px] max-h-[430] shadow-lg">
+                    <Badge color='amber' size="square" content="New">
+                      <CardHeader floated={false} color="blue-gray" className=' z-9 w-[240px] h-[240px]'>
+                        <Badge color='green' content={'- ' + product.discount + '%'} className='mr-4 mt-2'>
+                          <Link to={`/product-detail/${product.id}`}>
+                            <img className=' w-[240px] h-[240px] transition duration-300 ease-in-out hover:scale-110 '
+                              src={product.images[0]?.url}
+                              alt={product.name}
+                            />
+                          </Link>
+                        </Badge>
+                      </CardHeader>
+                    </Badge>
+                    <CardBody>
+                      <div className="mb-3 flex items-center justify-between">
+                        <Typography variant="h5" color="blue-gray" className="font-medium overflow-hidden text-ellipsis whitespace-nowrap">
+                          {product.name}
+                        </Typography>
+                      </div>
+                      <div className='flex justify-between'>
+                        <Typography color="gray">
+                          <del>{product.discount > 0 ? formatPrice(product.price) : ''}</del>
+                        </Typography>
+                        <Typography color="gray">
+                          {formatPrice(product.discountPrice)}
+                        </Typography>
+                      </div>
+                      <div>
+                        <Rating unratedColor='amber' ratedColor='amber' readonly></Rating>
+                      </div>
+                    </CardBody>
+                  </Card>
+                </SwiperSlide>
+              ))}
           </Swiper>
         </div>
 
@@ -133,22 +145,34 @@ export default function Homepage() {
         <p className='text-xl text-yellow-700 font-semibold mt-16'>SẢN PHẨM HOT</p>
         <div className='my-2'>
           <Swiper
-            autoplay={{
-              delay: 2500,
-              disableOnInteraction: false,
-            }}
-
-            slidesPerView={4}
-            spaceBetween={30}
-            pagination={{
-              clickable: true,
-            }}
-            navigation={true}
-            style={{
-              '--swiper-navigation-color': '#f5bd24',
-            }}
-            modules={[Autoplay, Navigation]}
-            className="mySwiper"
+           autoplay={{
+            delay: 2500,
+            disableOnInteraction: false,
+          }}
+          spaceBetween={0}
+          pagination={{
+            clickable: true,
+          }}
+          navigation={true}
+          style={{
+            '--swiper-navigation-color': '#f5bd24',
+          }}
+          modules={[Autoplay, Navigation]}
+          breakpoints={{
+            640: {
+              slidesPerView: 1,
+              spaceBetween: 0,
+            },
+            768: {
+              slidesPerView: 2,
+              spaceBetween: 0,
+            },
+            1024: {
+              slidesPerView: 4,
+              spaceBetween: 0,
+            },
+          }}
+          className="mySwiper"
           >
 
             {hotProduct.length === 0 ? Array.from(new Array(6)).map((index) => (
@@ -178,7 +202,7 @@ export default function Homepage() {
                           {product.name}
                         </Typography>
                       </div>
-                      <div className='flex justify-between'>
+                      <div id='temp' className='flex min-w-[500px]:justify-between flex-cols'>
                         <Typography color="gray">
                           <del>{product.discount > 0 ? formatPrice(product.price) : ''}</del>
                         </Typography>

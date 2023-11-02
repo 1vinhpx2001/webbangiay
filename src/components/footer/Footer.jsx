@@ -4,7 +4,7 @@ import IconPhone from '../icons/IconPhone'
 
 export default function Footer() {
   return (
-      <div className="flex flex-col items-center bg-gray-200 text-center  lg:text-left">
+      <div className="flex flex-col items-center bg-gray-200 text-center lg:text-left mt-5">
         <div className="container p-6">
           <div className="grid place-items-center md:grid-cols-2 lg:grid-cols-3">
 
