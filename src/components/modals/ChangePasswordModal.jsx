@@ -90,7 +90,7 @@ export default function ChangePasswordModal({ isOpen }) {
     }
     return (
         <div
-            className=" z-[1000] bg-black bg-opacity-40 overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 w-full md:inset-0 h-modal md:h-full justify-center items-center flex "
+            className=" z-[1000] bg-black bg-opacity-40 overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 w-full md:inset-0 h-modal h-full justify-center items-center flex "
             aria-modal="true"
             role="dialog"
         >
