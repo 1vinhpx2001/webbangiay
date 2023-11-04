@@ -284,8 +284,8 @@ export default function CheckOut() {
     return (
         <div>
             <div className='text-yellow-600 font-semibold text-xl text-center my-10'>Thông tin mua hàng</div>
-            <div className='w-10/12 mx-auto my-10 flex'>
-                <div className='w-3/5'>
+            <div className='w-10/12 mx-auto my-10 md:flex'>
+                <div className='md:w-3/5'>
                     <div className='text-xl font-semibold mt-4'>Địa chỉ nhận hàng</div>
                     <form className='m-4'>
                         <div className='grid grid-cols-2 gap-5'>
@@ -478,7 +478,7 @@ export default function CheckOut() {
 
                     </form>
                 </div>
-                <div className='w-2/5 '>
+                <div className='md:w-2/5 '>
                     <div className='flex justify-between my-4'>
                         <div className='text-xl font-semibold mt-2'>Giỏ hàng của bạn</div>
                         <span className="mt-2 inline-flex items-center rounded-md bg-yellow-50 px-2 py-1 text-sm font-medium text-yellow-800 ring-1 ring-inset ring-yellow-600/20">Số loại:&nbsp;{cart?.totalProduct || 0}</span>
@@ -488,7 +488,7 @@ export default function CheckOut() {
                             {/* Số sản phẩm được đặt */}
                             {cart.items?.map((cartItem) => (
                                 <li className='flex justify-between p-4 border border-t border-gray-200'>
-                                    <div className='flex gap-2'>
+                                    <div className='xl:flex xl:gap-2'>
                                         <img src={cartItem.image} alt="Ảnh sản phẩm" className='object-cover w-[100px] h-[100px]' />
                                         <div className='mr-4'>
                                             <p className='font-semibold text-base'>{cartItem.name}</p>
