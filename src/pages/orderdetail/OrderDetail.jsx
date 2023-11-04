@@ -98,24 +98,24 @@ export default function OrderDetail() {
     }
 
 return (
-        <div className='w-10/12 mx-auto my-10'>
+        <div className='w-full sm:w-10/12 sm:mx-auto my-10'>
         {!order.id ?
         <div className='w-full flex justify-center items-center'>
         <Spinner size='lg' color='warning' label='Đang tải...'></Spinner> 
         </div>
         : 
         <>
-            <div className='flex justify-between'>
+            <div className='md:flex md:justify-between'>
                 <div className='text-xl'>Mã đơn hàng: {order.id}</div>
-                <Link to='/order' className='text-yellow-700 text-base'>Đơn hàng của tôi</Link>
+                <Link to='/order' className='text-yellow-700 text-base my-4 md:my-0'>Đơn hàng của tôi</Link>
             </div>
-            <div className=' mt-4 border border-gray-300 rounded-lg w-full p-5 text-base'>
-                <div className='flex gap-10'>
-                    <div className='w-3/5'>
+            <div className=' mt-4 border border-gray-300 rounded-lg w-full  p-5 text-base'>
+                <div className='md:flex md:gap-10'>
+                    <div className='md:w-3/5'>
                         {order.items?.map((item) => (
-                            <div className='flex gap-10 my-4'>
+                            <div className='sm:flex gap-10 my-4'>
                                 <img className='object-cover w-[150px] h-[150px] rounded-lg' src={item.image} alt="...loading" />
-                                <div>
+                                <div className='mt-4 sm:mt-0'>
                                     <p>{item.name}</p>
                                     <p>Số lượng: {item.quantity} / Size: {item.size}</p>
                                     <p>{formatPrice(item.subPrice)}</p>
@@ -123,7 +123,7 @@ return (
                             </div>
                         ))}
                     </div>
-                    <div className='w-2/5'>
+                    <div className='md:w-2/5'>
                         <p className='text-red-700'>Địa chỉ giao hàng</p>
                         <p className='text-gray-700'>
                             {order.deliveryDetail?.receiveAddress}/
@@ -162,7 +162,7 @@ return (
                     </Box>
                 </div>
             </div>
-            <div className='bg-gray-300 p-5 text-base my-4'>
+            <div className='bg-gray-300 p-5 text-base my-4 '>
                 <p>Tạm tính: {formatPrice(order?.totalPrice)}</p>
                 <p>Hình thức thanh toán: {order?.paymentType}</p>
                 <p>Tình trạng thanh toán: {order?.paymentInfo.isPaid ? 'Đã thanh toán' : 'Chưa thanh toán'}</p>
