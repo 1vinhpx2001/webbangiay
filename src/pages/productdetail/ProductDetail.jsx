@@ -16,9 +16,9 @@ import {
     Typography,
     Rating,
     Badge,
-    CardFooter
 } from "@material-tailwind/react";
 import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 export default function ProductDetail() {
 
