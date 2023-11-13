@@ -110,20 +110,29 @@ return (
                 <Link to='/order' className='text-yellow-700 text-base my-4 md:my-0'>Đơn hàng của tôi</Link>
             </div>
             <div className=' mt-4 border border-gray-300 rounded-lg w-full  p-5 text-base'>
-                <div className='md:flex md:gap-10'>
-                    <div className='md:w-3/5'>
+                <div className='lg:flex lg:gap-10'>
+                    <div className='lg:w-3/5'>
                         {order.items?.map((item) => (
                             <div className='sm:flex gap-10 my-4'>
                                 <img className='object-cover w-[150px] h-[150px] rounded-lg' src={item.image} alt="...loading" />
                                 <div className='mt-4 sm:mt-0'>
                                     <p>{item.name}</p>
-                                    <p>Số lượng: {item.quantity} / Size: {item.size}</p>
+                                    {/* <p>Số lượng: {item.quantity} / Size: {item.size} / Màu: </p>
+                                    <span className='z-10 mt-1 ml-1 h-5 w-5 border border-black border-opacity-20 rounded-full' style={{ backgroundColor: item.color }}></span> */}
+                                    <div className='flex'>
+                                    <p className="text-gray-700">Số lượng:&nbsp;{item.quantity}&nbsp;/&nbsp;Size:&nbsp;{item.size}&nbsp;/&nbsp;</p>
+                                    <p className="text-gray-700">Màu:</p>
+                                    <span
+                                                className='z-10 mt-[2px] ml-1 h-5 w-5 border border-black border-opacity-20 rounded-full'
+                                                style={{ backgroundColor: item.color }}
+                                            ></span>
+                                    </div>
                                     <p>{formatPrice(item.subPrice)}</p>
                                 </div>
                             </div>
                         ))}
                     </div>
-                    <div className='md:w-2/5'>
+                    <div className='lg:w-2/5'>
                         <p className='text-red-700'>Địa chỉ giao hàng</p>
                         <p className='text-gray-700'>
                             {order.deliveryDetail?.receiveAddress}/

@@ -18,6 +18,7 @@ import {
     Badge,
     CardFooter
 } from "@material-tailwind/react";
+import ReactQuill from 'react-quill';
 
 export default function ProductDetail() {
 
@@ -132,7 +133,6 @@ export default function ProductDetail() {
         topImage.src = src;
     };
 
-    const [amount, setAmount] = useState(1)
     return (
         <div>
 
@@ -180,8 +180,8 @@ export default function ProductDetail() {
 
                                         </div>
                                     </div>
-                                    <div className='text-gray-700'>
-                                        {product.description}
+                                    <div>
+                                    <ReactQuill theme={'bubble'} readOnly value={product.description} />
                                     </div>
                                     <h6 className='text-2xl font-semibold text-red-600'>Giá bán :&nbsp;{formatPrice(product.discountPrice + extraFee)}</h6>
                                     <h6 className='text-lg font-semibold'>
@@ -216,6 +216,32 @@ export default function ProductDetail() {
                                             ))}
                                         </div>
                                     </RadioGroup>
+                                    <RadioGroup className="mt-2" value={color} onChange={setColor}>
+                                    <div>Chọn màu:</div>
+                                    <div className="flex items-center space-x-3">
+                                        {colorList.map((variant) => (
+                                            <RadioGroup.Option
+                                                key={variant.id}
+                                                value={variant.color}
+                                                className={({ active, checked }) =>
+                                                    classNames( active && checked ? 'ring ring-offset-1' : '', !active && checked ? 'ring-2' : '','-m-0.5 relative p-0.5 rounded-full flex items-center justify-center cursor-pointer focus:outline-none',)
+                                                }
+                                                disabled={variant.stock <= 0}
+                                                style={{ marginTop: 10 }}
+                                            >
+                                                <RadioGroup.Label as="p" className="sr-only">
+                                                    {variant.color}
+                                                </RadioGroup.Label>
+                                                <span
+                                                    style={{ backgroundColor: variant.color }}
+                                                    className={classNames(
+                                                        'z-10 h-8 w-8 border border-black border-opacity-10 rounded-full',
+                                                    )}
+                                                ></span>
+                                            </RadioGroup.Option>
+                                        ))}
+                                    </div>
+                                </RadioGroup>
                                     <div className="mt-6 grid grid-cols-2 gap-10">
                                         <button type='button' onClick={handleAddToCart} className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-yellow-700 rounded-md hover:bg-yellow-600 focus:outline-none focus:bg-yellow-600">
                                             Thêm vào giỏ hàng

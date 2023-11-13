@@ -9,7 +9,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import { UpdateError, UpdateSuccessReload } from '../../components/alert'
 import validator from 'validator';
 import { makeAnOrder } from '../../api/PaymentApi'
-
+function classNames(...classes) {
+    return classes.filter(Boolean).join(' ');
+}
 export default function CheckOut() {
 
     let navigate = useNavigate();
@@ -102,7 +104,7 @@ export default function CheckOut() {
                     to_district_id: district,
                     to_ward_code: ward,
                     weight: 30 * cart.totalProduct < 30000 ? 30 * cart.totalProduct : 30000,
-                    height: 10 * cart.totalProduct < 150 ? 10* cart.totalProduct : 150,
+                    height: 10 * cart.totalProduct < 150 ? 10 * cart.totalProduct : 150,
                 });
                 if (fee.code === 200) {
                     setShippingFee(fee.data.total);
@@ -150,18 +152,18 @@ export default function CheckOut() {
         navigate('/');
     }
     const backCart = () => {
-        navigate('/cart');    
+        navigate('/cart');
     };
     const [paymentType, setPaymentType] = useState('cod');
 
     const handleChangePayment = (event) => {
         const radioButton = event.target;
         const value = radioButton.value;
-        
-        
+
+
         setPaymentType(value);
         console.log(paymentType)
-      };
+    };
 
     const makeOrder = async (paymentType, orderId, user) => {
         if (province === undefined) {
@@ -425,7 +427,7 @@ export default function CheckOut() {
                                 ))}
                             </select>
                         </div>
-                        
+
                         {/* PHƯƠNG THỨC THANH TOÁN */}
                         <div className="mt-4 block text-sm font-semibold text-gray-800">PHƯƠNG THỨC THANH TOÁN</div>
                         <div className='my-4'>
@@ -492,7 +494,15 @@ export default function CheckOut() {
                                         <img src={cartItem.image} alt="Ảnh sản phẩm" className='object-cover w-[100px] h-[100px]' />
                                         <div className='mr-4'>
                                             <p className='font-semibold text-base'>{cartItem.name}</p>
-                                            <p className='text-gray-600'>Số lượng:&nbsp;{cartItem.quantity}&nbsp;/&nbsp;Size:&nbsp;{cartItem.size}</p>
+                                            <p className="text-gray-700">Số lượng:&nbsp;{cartItem.quantity}</p>
+                                            <div className='flex'>
+                                                <p className="text-gray-700">Size:&nbsp;{cartItem.size}&nbsp;/&nbsp;</p>
+                                                <p className="text-gray-700">Màu:</p>
+                                                <span
+                                                    className='z-10 mt-[2px] ml-1 h-5 w-5 border border-black border-opacity-20 rounded-full'
+                                                    style={{ backgroundColor: cartItem.color }}
+                                                ></span>
+                                            </div>
                                         </div>
                                     </div>
                                     <div className='font-bold text-lg'> {formatPrice(cartItem.subPrice)}</div>

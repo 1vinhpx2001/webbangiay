@@ -103,7 +103,14 @@ export default function Cart() {
                             <div className="sm:ml-4 sm:flex sm:w-full sm:justify-between">
                                 <div className="mt-5 sm:mt-0">
                                     <h2 className="text-lg font-bold text-gray-900">{cartItem.name}</h2>
-                                    <p className="mt-1 text-sm text-gray-700">Size:&nbsp;{cartItem.size}</p>
+                                    <div className='flex'>
+                                    <p className="mt-1 text-sm text-gray-700">Size:&nbsp;{cartItem.size}&nbsp;/&nbsp;</p>
+                                    <p className="mt-1 text-sm text-gray-700">Màu:</p>
+                                    <span
+                                                className='z-10 mt-1 ml-1 h-5 w-5 border border-black border-opacity-20 rounded-full'
+                                                style={{ backgroundColor: cartItem.color }}
+                                            ></span>
+                                    </div>
                                     <div className='flex gap-4'>
                                         <p className='mt-1 text-lg text-red-700 font-bold'>{formatPrice(cartItem.subPrice)}</p>
                                         <del className='mt-1 text-lg text-gray-500 font-bold'> {formatPrice(cartItem.price * cartItem.quantity)}</del>
