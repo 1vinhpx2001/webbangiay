@@ -28,6 +28,7 @@ export default function Login() {
         if (res.data.success) {
             await dispatch(authAction.login(res.data));
             navigate('/')
+            window.location.reload();
         }
         else {
             let message = "Sai tài khoản hoặc mật khẩu";

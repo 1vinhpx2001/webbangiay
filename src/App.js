@@ -13,8 +13,11 @@ import ProductList from "./pages/productlist/ProductList";
 import Profile from "./pages/profile/Profile";
 import Register from "./pages/register/Register";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { getUserFromLocalStorage } from "./utils/userHandle";
 
 function App() {
+  let currentUser= getUserFromLocalStorage()
+  console.log(currentUser)
   return (
     <>
       <BrowserRouter>
@@ -31,9 +34,9 @@ function App() {
 
           <Route path="/register" exact element={<Register></Register>}></Route>
 
-          <Route path="/order" exact element={<Order></Order>}></Route>
+          <Route path="/order" exact element={currentUser === undefined ?  <NotFound404></NotFound404> : <Order></Order>}></Route>
 
-          <Route path="/cart"  exact element={<Cart></Cart>}></Route>
+          <Route path="/cart"  exact element={currentUser === undefined ?  <NotFound404></NotFound404> : <Cart></Cart>}></Route>
 
           <Route path="/check-out" exact element={<CheckOut></CheckOut>}></Route>
 
@@ -41,23 +44,14 @@ function App() {
 
           <Route path="/forgot-password" exact element={<ForgotPassword></ForgotPassword>}></Route>
 
-          <Route path="/profile/:id" element={<Profile></Profile>}></Route>
+          <Route path="/profile/:id" element={currentUser === undefined ?  <NotFound404></NotFound404> : <Profile></Profile>}></Route>
 
-          <Route path="/order-detail/:id" element={ <OrderDetail></OrderDetail>}></Route>
+          <Route path="/order-detail/:id" element={currentUser === undefined ?  <NotFound404></NotFound404> : <OrderDetail></OrderDetail>}></Route>
 
           <Route path="*" element={<NotFound404></NotFound404>}></Route>
         </Routes>
         <Footer />
       </BrowserRouter>
-
-      
-      {/* <ProductList/> */}
-      {/* <Homepage/> */}
-      {/* <Login/> */}
-      {/* <Register/> */}
-      {/* <Order/> */}
-      {/* <Cart/> */}
-      {/* <CheckOut/> */}
 
     </>
   );
