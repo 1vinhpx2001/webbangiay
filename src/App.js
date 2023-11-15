@@ -5,6 +5,7 @@ import CheckOut from "./pages/checkout/CheckOut";
 import ForgotPassword from "./pages/forgotpassword/ForgotPassword";
 import Homepage from "./pages/homepage/Homepage";
 import Login from "./pages/login/Login";
+import NotFound404 from "./pages/notfound/NotFound404";
 import Order from "./pages/order/Order";
 import OrderDetail from "./pages/orderdetail/OrderDetail";
 import ProductDetail from "./pages/productdetail/ProductDetail";
@@ -12,7 +13,6 @@ import ProductList from "./pages/productlist/ProductList";
 import Profile from "./pages/profile/Profile";
 import Register from "./pages/register/Register";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
 
 function App() {
   return (
@@ -43,8 +43,9 @@ function App() {
 
           <Route path="/profile/:id" element={<Profile></Profile>}></Route>
 
-          <Route path="/order-detail/:id" element={<OrderDetail></OrderDetail>}></Route>
+          <Route path="/order-detail/:id" element={ <OrderDetail></OrderDetail>}></Route>
 
+          <Route path="*" element={<NotFound404></NotFound404>}></Route>
         </Routes>
         <Footer />
       </BrowserRouter>
