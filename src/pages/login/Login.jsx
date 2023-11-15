@@ -5,13 +5,16 @@ import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-export default function Login() {
+import { Spinner } from '@nextui-org/react';
 
+export default function Login() {
+    
     const dispatch = useDispatch();
     let navigate = useNavigate();
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [loading, setLoad] = useState(false)
     const [showPassword, setShowPassword] = useState(false);
 
     const handleTogglePassword = () => {
@@ -33,6 +36,7 @@ export default function Login() {
             });
             ;
         }
+        setLoad(false)
     }
     const onChangeUsernameHanle = (e) => {
         setUsername(e.target.value)
@@ -42,6 +46,7 @@ export default function Login() {
     }
 
     const handleLogin = () => {
+        setLoad(true)
         login({ username, password })
     }
     return (
@@ -101,8 +106,8 @@ export default function Login() {
                             </div>
 
                             <div className="mt-6">
-                                <button type='button' onClick={handleLogin} className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-yellow-700 rounded-md hover:bg-yellow-600 focus:outline-none focus:bg-yellow-600">
-                                    Đăng nhập
+                                <button type='button' disabled={loading  ? true : false} onClick={handleLogin} className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-yellow-700 rounded-md hover:bg-yellow-600 focus:outline-none focus:bg-yellow-600">
+                                {loading ?<Spinner size='sm' color="default" /> : "Đăng nhập"}
                                 </button>
                             </div>
                         </form>

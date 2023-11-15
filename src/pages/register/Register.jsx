@@ -6,6 +6,7 @@ import validator from 'validator';
 import { UpdateError, UpdateSuccessNavigate } from '../../components/alert';
 import { Link, useNavigate } from 'react-router-dom';
 import "./register.css";
+import { Spinner } from '@nextui-org/react';
 export default function Register() {
 
     const [provinces, setProvinces] = useState([])
@@ -14,7 +15,7 @@ export default function Register() {
     const [province, setProvince] = useState()
     const [district, setDistrict] = useState()
     const [ward, setWard] = useState()
-   
+    const [loading, setLoad] = useState(false)
     let navigate = useNavigate();
     useEffect(() => {
         async function getProvinceAPI(data) {
@@ -59,6 +60,7 @@ export default function Register() {
 
     const [activeStep, setActiveStep] = useState(0);
     const handleNext = async (e) => {
+        setLoad(true)
         let checkName = validator.isEmpty(name)
         let checkEmail = validator.isEmail(email)
         let checkAddress = validator.isEmpty(address)
@@ -214,6 +216,7 @@ export default function Register() {
                 }
             }
         }
+        setLoad(false)
     };
     const handleChangeWard = (e) => {
         setWard(e.target.value)
@@ -452,8 +455,8 @@ export default function Register() {
                                 </div>
 
                                 <div className="mt-6">
-                                    <button type='button' onClick={handleNext} className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-yellow-700 rounded-md hover:bg-yellow-600 focus:outline-none focus:bg-yellow-600">
-                                        Gửi mã xác nhận
+                                    <button type='button' disabled={loading  ? true : false} onClick={handleNext} className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-yellow-700 rounded-md hover:bg-yellow-600 focus:outline-none focus:bg-yellow-600">
+                                    {loading ?<Spinner size='sm' color="default" /> : "Gửi mã xác nhận"}
                                     </button>
                                 </div>
                             </> : <></>}
