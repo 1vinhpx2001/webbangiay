@@ -108,26 +108,26 @@ export default function Order() {
         }
       >
         <TableHeader>
-          <TableColumn key="id" allowsSorting>
+          <TableColumn key="id" >
             MÃ ĐƠN HÀNG
           </TableColumn>
-          <TableColumn key="createdDate" allowsSorting>
+          <TableColumn key="createdDate" >
             NGÀY ĐẶT
           </TableColumn>
-          <TableColumn key="userName" allowsSorting>
+          <TableColumn key="userName" >
             NGƯỜI ĐẶT
           </TableColumn>
-          <TableColumn key="totalPrice" allowsSorting>
+          <TableColumn key="totalPrice" >
             TỔNG SỐ TIỀN
           </TableColumn>
-          <TableColumn key="totalQuantity" allowsSorting>
+          <TableColumn key="totalQuantity" >
             SỐ LƯỢNG SẢN PHẨM
           </TableColumn>
-          <TableColumn key="state" allowsSorting>
+          <TableColumn key="state">
             TRẠNG THÁI
           </TableColumn>
         </TableHeader>
-        <TableBody items={list.items} isLoading={loading} loadingContent={<Spinner color='warning' label='Đang tải...'></Spinner>}>
+        <TableBody items={list.items} emptyContent={"Hiện tại không có đơn hàng nào"}>
           {(row) => (
             <TableRow key={row.id}>
               <TableCell ><Link to={`/order-detail/${row.id}`} className='hover:text-yellow-700'>{row.id}</Link></TableCell>
@@ -144,8 +144,6 @@ export default function Order() {
           )}
         </TableBody>
       </Table>
-
-
     </div>
   )
 }
