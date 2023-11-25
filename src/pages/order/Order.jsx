@@ -62,7 +62,7 @@ export default function Order() {
     cancel:"danger",
     process:"secondary",
     delivery:"default",
-    delivered:"default",
+    delivered:"primary",
     prepare:"warning"
   }
 
@@ -127,7 +127,7 @@ export default function Order() {
             TRẠNG THÁI
           </TableColumn>
         </TableHeader>
-        <TableBody items={list.items} emptyContent={"Hiện tại không có đơn hàng nào"}>
+        <TableBody items={list.items} isLoading={loading} loadingContent={<Spinner color='warning' label='Đang tải...'></Spinner>}>
           {(row) => (
             <TableRow key={row.id}>
               <TableCell ><Link to={`/order-detail/${row.id}`} className='hover:text-yellow-700'>{row.id}</Link></TableCell>
