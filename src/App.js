@@ -14,6 +14,7 @@ import Profile from "./pages/profile/Profile";
 import Register from "./pages/register/Register";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { getUserFromLocalStorage } from "./utils/userHandle";
+import Oauth2 from "./pages/Oauth2/Oauth2";
 
 function App() {
   let currentUser= getUserFromLocalStorage()
@@ -47,6 +48,8 @@ function App() {
           <Route path="/profile/:id" element={currentUser === undefined ?  <NotFound404></NotFound404> : <Profile></Profile>}></Route>
 
           <Route path="/order-detail/:id" element={currentUser === undefined ?  <NotFound404></NotFound404> : <OrderDetail></OrderDetail>}></Route>
+
+          <Route path="/oauth2/redirect" element={<Oauth2></Oauth2>}></Route>
 
           <Route path="*" element={<NotFound404></NotFound404>}></Route>
         </Routes>

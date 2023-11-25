@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Spinner } from '@nextui-org/react';
+import { Divider, Spinner } from '@nextui-org/react';
 
 export default function Login() {
     
@@ -111,12 +111,20 @@ export default function Login() {
                                 {loading ?<Spinner size='sm' color="default" /> : "Đăng nhập"}
                                 </button>
                             </div>
+                            <div className="mt-6">
+                            <Divider/>
+                            </div>
+                            <div className="mt-6">
+                                <Link to='http://localhost:8080/oauth2/authorization/google' className="w-full px-4 py-2 flex justify-center tracking-wide text-white transition-colors duration-200 transform bg-red-700 hover:bg-red-600 focus:outline-none focus:bg-red-600">
+                                Sign in with Google
+                                </Link>
+                            </div>
                         </form>
                         <p className="mt-8 text-xs font-light text-center text-gray-700">
                             {" "}
                             Chưa có tài khoản?{" "}
                             <Link to='/register'
-                                className="font-medium text-yellow-600 hover:underline"
+                                className="font-medium text-yellow-700 hover:underline"
                             >
                                 Đăng ký
                             </Link>
