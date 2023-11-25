@@ -9,7 +9,7 @@ const authSlice = createSlice({
             id:"",
             email:"",
             name:"",
-            // avatar:"",
+            avatar:"",
             gender:"",
             role:"",
             accessToken:""
@@ -17,12 +17,12 @@ const authSlice = createSlice({
     },
     reducers:{
         login(state,action){
-            let {id,email,name,gender,role,accessToken} = action.payload.data
-            // if(avatar===null)
-            // {
-            //     avatar = 'https://cdn0.iconfinder.com/data/icons/set-ui-app-android/32/8-512.png'
-            // }
-            addUserToLocalStorage(id,email,name,gender,role)
+            let {id,email,name,avatar,gender,role,accessToken} = action.payload.data
+            if(avatar===null)
+            {
+                avatar = 'https://cdn0.iconfinder.com/data/icons/set-ui-app-android/32/8-512.png'
+            }
+            addUserToLocalStorage(id,email,name,avatar,gender,role)
             addToLocalStorage(accessToken)
         },
         logout(state,action){
