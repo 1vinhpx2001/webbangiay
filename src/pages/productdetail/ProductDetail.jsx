@@ -181,7 +181,7 @@ export default function ProductDetail() {
                                         </div>
                                     </div>
                                     <div>
-                                    <ReactQuill theme={'bubble'} readOnly value={product.description} />
+                                    <ReactQuill className='text-xl' theme={'bubble'} readOnly value={product.description} />
                                     </div>
                                     <h6 className='text-2xl font-semibold text-red-600'>Giá bán :&nbsp;{formatPrice(product.discountPrice + extraFee)}</h6>
                                     <h6 className='text-lg font-semibold'>

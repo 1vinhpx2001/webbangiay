@@ -1,4 +1,4 @@
-import {get,put} from '../axios/Instance'
+import {get,put,postImage} from '../axios/Instance'
 
 export const forgotPassword = async (data,id) =>{
     try{
@@ -58,6 +58,15 @@ export const getOrder = async (id) =>{
 export const getOrders = async () =>{
     try{
         const response = await get('/users/order/history');
+        return response
+    }catch(error){
+        return error.response
+    }
+}
+
+export const updateAvatarUserByID = async (data,id) =>{
+    try{
+        const response = await postImage(`/users/avatar/${id}`,data);
         return response
     }catch(error){
         return error.response

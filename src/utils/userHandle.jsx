@@ -60,7 +60,7 @@ export const clearUserFromLocalStorage = () => {
         encryptStorage.removeItem('id');
         encryptStorage.removeItem('email');
         encryptStorage.removeItem('name');
-       
+        encryptStorage.removeItem('avatar');
         encryptStorage.removeItem('gender');
         encryptStorage.removeItem('role');
     } else {
