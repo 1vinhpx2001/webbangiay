@@ -15,6 +15,7 @@ import Register from "./pages/register/Register";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { getUserFromLocalStorage } from "./utils/userHandle";
 import Oauth2 from "./pages/Oauth2/Oauth2";
+import OrderNotification from "./pages/ordernotification/OrderNotification";
 
 function App() {
   let currentUser= getUserFromLocalStorage()
@@ -51,6 +52,8 @@ function App() {
 
           <Route path="/oauth2/redirect" element={<Oauth2></Oauth2>}></Route>
 
+          <Route path="/redirect/payment" element={<OrderNotification></OrderNotification>}></Route>
+          
           <Route path="*" element={<NotFound404></NotFound404>}></Route>
         </Routes>
         <Footer />
