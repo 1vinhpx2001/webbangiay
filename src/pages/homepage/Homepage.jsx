@@ -14,9 +14,9 @@ import {
   CardHeader,
   CardBody,
   Typography,
-  Rating,
   Badge,
 } from "@material-tailwind/react";
+import { Rating } from '@mui/material';
 import { Link } from 'react-router-dom';
 import LoadingCard from '../../components/loadingcard/LoadingCard'
 import IconHome01 from '../../components/icons/IconHome01'
@@ -154,7 +154,7 @@ export default function Homepage() {
                         </Typography>
                       </div>
                       <div>
-                        <Rating unratedColor='amber' ratedColor='amber' readonly></Rating>
+                        <Rating readOnly precision={0.1} sx={{ mr: '0.3rem' }} size="small" value={product.rate}></Rating>
                       </div>
                     </CardBody>
                   </Card>
@@ -234,7 +234,7 @@ export default function Homepage() {
                         </Typography>
                       </div>
                       <div >
-                        <Rating unratedColor='amber' ratedColor='amber' readonly></Rating>
+                        <Rating unratedColor='amber' ratedColor='amber' value={product.rate} readonly></Rating>
                       </div>
                     </CardBody>
                   </Card>

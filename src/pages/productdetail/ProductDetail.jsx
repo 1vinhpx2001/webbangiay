@@ -14,9 +14,9 @@ import {
     CardHeader,
     CardBody,
     Typography,
-    Rating,
     Badge,
 } from "@material-tailwind/react";
+import { Rating } from '@mui/material';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
@@ -174,7 +174,7 @@ export default function ProductDetail() {
                                                 </>
                                             )}
                                             <div className='flex gap-2'>
-                                                <Rating unratedColor="amber" ratedColor="amber" value={product.rate} readonly></Rating>
+                                                <Rating readOnly precision={0.1} sx={{ mr: '0.3rem' }} size="small" value={product.rate}></Rating>
                                                 <p>{product.rateCount} đánh giá</p>
                                             </div>
 
@@ -296,7 +296,7 @@ export default function ProductDetail() {
                                             </Typography>
                                           </div>
                                           <div >
-                                            <Rating unratedColor='amber' ratedColor='amber' readonly></Rating>
+                                            <Rating readOnly precision={0.1} sx={{ mr: '0.3rem' }} size="small" value={product.rate} ></Rating>
                                           </div>
                                         </CardBody>
                                       </Card>
