@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import CarouselHome from '../../components/carousel/CarouselHome'
 import { getSortProducts } from '../../api/ProductApi'
-import { getRecommendProducts } from '../../api/UserApi'
 import { getFromLocalStorage } from '../../utils/tokenHandle'
 import { getUserFromLocalStorage } from '../../utils/userHandle'
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -34,12 +33,12 @@ export default function Homepage() {
   let curToken = getFromLocalStorage();
 
   const [hotProduct, setHotProduct] = useState([]);
-  const [recommends, setRecommends] = useState([]);
+  
   const [newProduct, setNewProduct] = useState([]);
   useEffect(() => {
     async function getHotProduct() {
 
-      let [resHot, resNew, recommends] = await Promise.all([
+      let [resHot, resNew] = await Promise.all([
         getSortProducts('discount,desc'),
         getSortProducts('createdDate,desc'),
 
@@ -49,16 +48,8 @@ export default function Homepage() {
         setNewProduct(resNew.data.list);
       }
     }
-    // async function getRecommend() {
-    //   if (curUser.id !== undefined && curToken !== undefined) {
-    //     let res = await getRecommendProducts()
-    //     if (res.success) {
-    //       setRecommends(res.data)
-    //     }
-    //   }
-    // }
     getHotProduct();
-    // getRecommend()
+   
   }, []);
   return (
     <div className='mt-5'>
