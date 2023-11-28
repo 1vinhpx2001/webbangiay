@@ -19,6 +19,9 @@ import {
 } from "@material-tailwind/react";
 import { Link } from 'react-router-dom';
 import LoadingCard from '../../components/loadingcard/LoadingCard'
+import IconHome01 from '../../components/icons/IconHome01'
+import IconHome02 from '../../components/icons/IconHome02'
+import IconHome03 from '../../components/icons/IconHome03'
 
 
 export default function Homepage() {
@@ -60,6 +63,26 @@ export default function Homepage() {
   return (
     <div className='mt-5'>
       <CarouselHome />
+      <div className='w-10/12 mx-auto bg-blue-gray-50 md:flex p-10'>
+        <div className='flex flex-col items-center md:w-1/3'>
+          <IconHome01></IconHome01>
+          <p className='text-yellow-700 text-2xl font-bold mt-2 text-center'>CAM KẾT CHÍNH HÃNG</p>
+          <p className='text-xs font-semibold text-center'>100% Authentic</p>
+          <p className='text-xs text-center'>Cam kết sản phẩm chính hãng từ Châu Âu, Châu Mỹ...</p>
+        </div>
+        <div className='flex flex-col items-center md:w-1/3 my-4 md:my-0'>
+          <IconHome02></IconHome02>
+          <p className='text-yellow-700 text-2xl font-bold mt-2 text-center'>GIAO HÀNG HỎA TỐC</p>
+          <p className='text-xs font-semibold text-center'>Express Delivery</p>
+          <p className='text-xs text-center'>SHIP hỏa tốc 1h nhận hàng trong thành phố HCM</p>
+        </div>
+        <div className='flex flex-col items-center md:w-1/3'>
+          <IconHome03></IconHome03>
+          <p className='text-yellow-700 text-2xl font-bold mt-2 text-center'>HỖ TRỢ 24/24</p>
+          <p className='text-xs font-semibold text-center'>Supporting 24/24</p>
+          <p className='text-xs text-center'>Gọi ngay 0898515689</p>
+        </div>
+      </div>
       <div className='w-10/12 mx-auto my-5 '>
         {/* Sản phẩm mới section */}
         <p className='text-xl text-yellow-700 font-semibold mt-16'>SẢN PHẨM MỚI</p>
@@ -145,34 +168,34 @@ export default function Homepage() {
         <p className='text-xl text-yellow-700 font-semibold mt-16'>SẢN PHẨM HOT</p>
         <div className='my-2'>
           <Swiper
-           autoplay={{
-            delay: 2500,
-            disableOnInteraction: false,
-          }}
-          spaceBetween={0}
-          pagination={{
-            clickable: true,
-          }}
-          navigation={true}
-          style={{
-            '--swiper-navigation-color': '#f5bd24',
-          }}
-          modules={[Autoplay, Navigation]}
-          breakpoints={{
-            640: {
-              slidesPerView: 1,
-              spaceBetween: 0,
-            },
-            768: {
-              slidesPerView: 2,
-              spaceBetween: 0,
-            },
-            1024: {
-              slidesPerView: 4,
-              spaceBetween: 0,
-            },
-          }}
-          className="mySwiper"
+            autoplay={{
+              delay: 2500,
+              disableOnInteraction: false,
+            }}
+            spaceBetween={0}
+            pagination={{
+              clickable: true,
+            }}
+            navigation={true}
+            style={{
+              '--swiper-navigation-color': '#f5bd24',
+            }}
+            modules={[Autoplay, Navigation]}
+            breakpoints={{
+              640: {
+                slidesPerView: 1,
+                spaceBetween: 0,
+              },
+              768: {
+                slidesPerView: 2,
+                spaceBetween: 0,
+              },
+              1024: {
+                slidesPerView: 4,
+                spaceBetween: 0,
+              },
+            }}
+            className="mySwiper"
           >
 
             {hotProduct.length === 0 ? Array.from(new Array(6)).map((index) => (
@@ -202,7 +225,7 @@ export default function Homepage() {
                           {product.name}
                         </Typography>
                       </div>
-                      <div id='temp' className='flex min-w-[500px]:justify-between flex-cols'>
+                      <div id='temp' className='flex justify-between'>
                         <Typography color="gray">
                           <del>{product.discount > 0 ? formatPrice(product.price) : ''}</del>
                         </Typography>
