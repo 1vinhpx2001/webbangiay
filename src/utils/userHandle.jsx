@@ -56,7 +56,6 @@ export const clearUserFromLocalStorage = () => {
     const curGender = encryptStorage.getItem('gender');
     const curRole = encryptStorage.getItem('role');
     if (curId && curEmail && curName  && curAvatar && curGender && curRole) {
-        
         encryptStorage.removeItem('id');
         encryptStorage.removeItem('email');
         encryptStorage.removeItem('name');
@@ -64,7 +63,6 @@ export const clearUserFromLocalStorage = () => {
         encryptStorage.removeItem('gender');
         encryptStorage.removeItem('role');
     } else {
-        console.log("Clear user failed")
-       
+        console.log("Clear user failed") 
     }
 }

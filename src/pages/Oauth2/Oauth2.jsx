@@ -61,7 +61,7 @@ export default function Oauth2() {
                     Vui lòng đăng nhập với tài khoản đã có trong hệ thống
                 </Typography>
                 
-                <Link to="/" class="mt-4 inline-block rounded bg-yellow-700 px-4 py-2 font-semibold text-white hover:bg-yellow-600"> Về Trang chủ </Link>
+                <Link to="/" className="mt-4 inline-block rounded bg-yellow-700 px-4 py-2 font-semibold text-white hover:bg-yellow-600"> Về Trang chủ </Link>
             </Box>
             <ToastContainer />
         </div>
