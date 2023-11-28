@@ -174,7 +174,7 @@ export default function ProductDetail() {
                                                 </>
                                             )}
                                             <div className='flex gap-2'>
-                                                <Rating readOnly precision={0.1} sx={{ mr: '0.3rem' }} size="small" value={product.rate}></Rating>
+                                                <Rating readOnly precision={0.1} size="small" value={product.rate}></Rating>
                                                 <p>{product.rateCount} đánh giá</p>
                                             </div>
 
@@ -296,7 +296,7 @@ export default function ProductDetail() {
                                             </Typography>
                                           </div>
                                           <div >
-                                            <Rating readOnly precision={0.1} sx={{ mr: '0.3rem' }} size="small" value={product.rate} ></Rating>
+                                            <Rating readOnly precision={0.1} size="small" value={product.rate} ></Rating>
                                           </div>
                                         </CardBody>
                                       </Card>

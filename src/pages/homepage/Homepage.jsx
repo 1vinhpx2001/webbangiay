@@ -154,7 +154,7 @@ export default function Homepage() {
                         </Typography>
                       </div>
                       <div>
-                        <Rating readOnly precision={0.1} sx={{ mr: '0.3rem' }} size="small" value={product.rate}></Rating>
+                        <Rating readOnly precision={0.1} size="small" value={product.rate}></Rating>
                       </div>
                     </CardBody>
                   </Card>
@@ -234,7 +234,7 @@ export default function Homepage() {
                         </Typography>
                       </div>
                       <div >
-                        <Rating unratedColor='amber' ratedColor='amber' value={product.rate} readonly></Rating>
+                        <Rating readOnly precision={0.1} size="small" value={product.rate}></Rating>
                       </div>
                     </CardBody>
                   </Card>
