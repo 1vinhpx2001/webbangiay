@@ -22,9 +22,9 @@ import 'react-quill/dist/quill.snow.css';
 
 export default function ProductDetail() {
 
+    let userCurrent = getUserFromLocalStorage()
     const [loading, SetLoad] = useState(false);
     let navigate = useNavigate();
-    // let userCur = getUserFromLocalStorage();
     const formatPrice = (value) =>
         new Intl.NumberFormat('vi-VN', {
             style: 'currency',
@@ -181,7 +181,7 @@ export default function ProductDetail() {
                                         </div>
                                     </div>
                                     <div>
-                                    <ReactQuill className='text-xl' theme={'bubble'} readOnly value={product.description} />
+                                        <ReactQuill className='text-xl' theme={'bubble'} readOnly value={product.description} />
                                     </div>
                                     <h6 className='text-2xl font-semibold text-red-600'>Giá bán :&nbsp;{formatPrice(product.discountPrice + extraFee)}</h6>
                                     <h6 className='text-lg font-semibold'>
@@ -217,40 +217,50 @@ export default function ProductDetail() {
                                         </div>
                                     </RadioGroup>
                                     <RadioGroup className="mt-2" value={color} onChange={setColor}>
-                                    <div>Chọn màu:</div>
-                                    <div className="flex items-center space-x-3">
-                                        {colorList.map((variant) => (
-                                            <RadioGroup.Option
-                                                key={variant.id}
-                                                value={variant.color}
-                                                className={({ active, checked }) =>
-                                                    classNames( active && checked ? 'ring ring-offset-1' : '', !active && checked ? 'ring-2' : '','-m-0.5 relative p-0.5 rounded-full flex items-center justify-center cursor-pointer focus:outline-none',)
-                                                }
-                                                disabled={variant.stock <= 0}
-                                                style={{ marginTop: 10 }}
-                                            >
-                                                <RadioGroup.Label as="p" className="sr-only">
-                                                    {variant.color}
-                                                </RadioGroup.Label>
-                                                <span
-                                                    style={{ backgroundColor: variant.color }}
-                                                    className={classNames(
-                                                        'z-10 h-8 w-8 border border-black border-opacity-10 rounded-full',
-                                                    )}
-                                                ></span>
-                                            </RadioGroup.Option>
-                                        ))}
-                                    </div>
-                                </RadioGroup>
+                                        <div>Chọn màu:</div>
+                                        <div className="flex items-center space-x-3">
+                                            {colorList.map((variant) => (
+                                                <RadioGroup.Option
+                                                    key={variant.id}
+                                                    value={variant.color}
+                                                    className={({ active, checked }) =>
+                                                        classNames(active && checked ? 'ring ring-offset-1' : '', !active && checked ? 'ring-2' : '', '-m-0.5 relative p-0.5 rounded-full flex items-center justify-center cursor-pointer focus:outline-none',)
+                                                    }
+                                                    disabled={variant.stock <= 0}
+                                                    style={{ marginTop: 10 }}
+                                                >
+                                                    <RadioGroup.Label as="p" className="sr-only">
+                                                        {variant.color}
+                                                    </RadioGroup.Label>
+                                                    <span
+                                                        style={{ backgroundColor: variant.color }}
+                                                        className={classNames(
+                                                            'z-10 h-8 w-8 border border-black border-opacity-10 rounded-full',
+                                                        )}
+                                                    ></span>
+                                                </RadioGroup.Option>
+                                            ))}
+                                        </div>
+                                    </RadioGroup>
                                     <div className="mt-6 grid grid-cols-2 gap-10">
-                                        <button type='button' onClick={handleAddToCart} className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-yellow-700 rounded-md hover:bg-yellow-600 focus:outline-none focus:bg-yellow-600">
-                                            Thêm vào giỏ hàng
-                                        </button>
+                                        {userCurrent?.id !== undefined ?
+                                                <button type='button' onClick={handleAddToCart} className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-yellow-700 rounded-md hover:bg-yellow-600 focus:outline-none focus:bg-yellow-600">
+                                                    Thêm vào giỏ hàng
+                                                </button>
+                                            :
+                                            <div>
+                                            <button type='button' disabled className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-gray-300 rounded-md  focus:outline-non">
+                                                Thêm vào giỏ hàng
+                                            </button>
+                                            <p className='text-red-600 text-center mt-2 text-xs'>Vui lòng đăng nhập để thêm vào giỏ hàng !</p>
+                                            </div>
+                                        }
                                         <Link to='/cart'>
                                             <button type='button' className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-yellow-700 rounded-md hover:bg-yellow-600 focus:outline-none focus:bg-yellow-600">
                                                 Đi đến giỏ hàng
                                             </button>
                                         </Link>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -269,37 +279,37 @@ export default function ProductDetail() {
                         ) : (
                             <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5'>
                                 {newProduct?.slice(0, 4).map((product) => (
-                                        <Card key={product.id} className="w-full max-w-[280px] max-h-[430px] shadow-lg">
-                                          <CardHeader floated={false} color="blue-gray"  >
+                                    <Card key={product.id} className="w-full max-w-[280px] max-h-[430px] shadow-lg">
+                                        <CardHeader floated={false} color="blue-gray"  >
                                             <Badge color='green' content={'- ' + product.discount + '%'} className='mr-4 mt-2'>
-                                              <Link to={`/product-detail/${product.id}`}>
-                                                <img className='h-[300px] transition duration-300 ease-in-out hover:scale-110  '
-                                                  src={product.images[0]?.url}
-                                                  alt={product.name}
-                                                />
-                                              </Link>
+                                                <Link to={`/product-detail/${product.id}`}>
+                                                    <img className='h-[300px] transition duration-300 ease-in-out hover:scale-110  '
+                                                        src={product.images[0]?.url}
+                                                        alt={product.name}
+                                                    />
+                                                </Link>
                                             </Badge>
-                                          </CardHeader>
+                                        </CardHeader>
 
                                         <CardBody>
-                                          <div className="mb-3 flex items-center justify-between">
-                                            <Typography variant="h5" color="blue-gray" className="font-medium overflow-hidden text-ellipsis whitespace-nowrap">
-                                              {product.name}
-                                            </Typography>
-                                          </div>
-                                          <div className='flex justify-between'>
-                                            <Typography color="gray">
-                                              <del>{product.discount > 0 ? formatPrice(product.price) : ''}</del>
-                                            </Typography>
-                                            <Typography color="gray">
-                                              {formatPrice(product.discountPrice)}
-                                            </Typography>
-                                          </div>
-                                          <div >
-                                            <Rating readOnly precision={0.1} size="small" value={product.rate} ></Rating>
-                                          </div>
+                                            <div className="mb-3 flex items-center justify-between">
+                                                <Typography variant="h5" color="blue-gray" className="font-medium overflow-hidden text-ellipsis whitespace-nowrap">
+                                                    {product.name}
+                                                </Typography>
+                                            </div>
+                                            <div className='flex justify-between'>
+                                                <Typography color="gray">
+                                                    <del>{product.discount > 0 ? formatPrice(product.price) : ''}</del>
+                                                </Typography>
+                                                <Typography color="gray">
+                                                    {formatPrice(product.discountPrice)}
+                                                </Typography>
+                                            </div>
+                                            <div >
+                                                <Rating readOnly precision={0.1} size="small" value={product.rate} ></Rating>
+                                            </div>
                                         </CardBody>
-                                      </Card>
+                                    </Card>
                                 ))}
                             </div>)}
                 </div>
