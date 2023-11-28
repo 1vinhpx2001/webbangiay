@@ -1,6 +1,4 @@
 import React from 'react'
-import HighlightOffIcon from '@mui/icons-material/HighlightOff';
-import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import { Link, useLocation } from 'react-router-dom';
 export default function OrderNotification() {
     let locate = useLocation()
