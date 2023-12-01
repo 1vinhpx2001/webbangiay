@@ -130,7 +130,7 @@ export default function Order() {
         <TableBody items={list.items} isLoading={loading} loadingContent={<Spinner color='warning' label='Đang tải...'></Spinner>}>
           {(row) => (
             <TableRow key={row.id}>
-              <TableCell ><Link to={`/order-detail/${row.id}`} className='hover:text-yellow-700'>{row.id}</Link></TableCell>
+              <TableCell ><Link to={`/order-detail/${row.id}`} className='hover:text-yellow-700 underline'>{row.id}</Link></TableCell>
               <TableCell >{row.createdDate}</TableCell>
               <TableCell >{row.userName}</TableCell>
               <TableCell >{formatPrice(row.totalPrice)}</TableCell>

@@ -16,6 +16,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { getUserFromLocalStorage } from "./utils/userHandle";
 import Oauth2 from "./pages/Oauth2/Oauth2";
 import OrderNotification from "./pages/ordernotification/OrderNotification";
+import FbMessenger from "./components/fbmessenger/FbMessenger";
 
 function App() {
   let currentUser= getUserFromLocalStorage()
@@ -56,6 +57,7 @@ function App() {
           
           <Route path="*" element={<NotFound404></NotFound404>}></Route>
         </Routes>
+        <FbMessenger></FbMessenger>
         <Footer />
       </BrowserRouter>
 
