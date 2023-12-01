@@ -7,7 +7,7 @@ import { UpdateSuccessReload } from '../../components/alert/UpdateSuccessReload'
 import { UpdateError } from '../../components/alert/UpdateError';
 import { getReviewsByProduct } from '../../api/ReviewProductApi';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Spinner, Tooltip } from '@nextui-org/react';
+import { Pagination, Spinner, Tooltip, User } from '@nextui-org/react';
 import { RadioGroup } from '@headlessui/react';
 import {
     Card,
@@ -244,15 +244,15 @@ export default function ProductDetail() {
                                     </RadioGroup>
                                     <div className="mt-6 grid grid-cols-2 gap-10">
                                         {userCurrent?.id !== undefined ?
-                                                <button type='button' onClick={handleAddToCart} className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-yellow-700 rounded-md hover:bg-yellow-600 focus:outline-none focus:bg-yellow-600">
-                                                    Thêm vào giỏ hàng
-                                                </button>
-                                            :
-                                            <div>
-                                            <button type='button' disabled className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-gray-300 rounded-md  focus:outline-non">
+                                            <button type='button' onClick={handleAddToCart} className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-yellow-700 rounded-md hover:bg-yellow-600 focus:outline-none focus:bg-yellow-600">
                                                 Thêm vào giỏ hàng
                                             </button>
-                                            <p className='text-red-600 text-center mt-2 text-xs'>Vui lòng đăng nhập để thêm vào giỏ hàng !</p>
+                                            :
+                                            <div>
+                                                <button type='button' disabled className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-gray-300 rounded-md  focus:outline-non">
+                                                    Thêm vào giỏ hàng
+                                                </button>
+                                                <p className='text-red-600 text-center mt-2 text-xs'>Vui lòng đăng nhập để thêm vào giỏ hàng !</p>
                                             </div>
                                         }
                                         <Link to='/cart'>
@@ -260,11 +260,42 @@ export default function ProductDetail() {
                                                 Đi đến giỏ hàng
                                             </button>
                                         </Link>
-                                        
+
                                     </div>
                                 </div>
                             </div>
                         )}
+                </div>
+
+                {/* Đánh giá sản phẩm */}
+                <div>
+                    <p className='text-xl text-yellow-700 font-semibold mt-16'>Đánh giá sản phẩm</p>
+                    {reviews?.list?.length !== 0 ? (
+                        reviews?.list?.map((review) => (
+                            <div key={review.id} className='my-4'>
+                                <User
+                                    color="warning"
+                                    bordered
+                                    text={review.reviewedBy}
+                                    description={review.createdDate}
+                                    name={review.reviewedBy}
+                                ></User>
+                                <Rating
+                                    readOnly
+                                    className='ml-2'
+                                    value={review.rate}
+                                    defaultValue={0}
+                                    precision={0.1}
+                                    max={5}></Rating>
+                                <p className='ml-10 text-sm italic'>{review.content}</p>
+                            </div>
+                        ))
+                    ) :
+                        <></>
+                    }
+                    <div hidden={reviews?.list?.length === 0 ? true : false} className="flex justify-center">
+                    <Pagination color='warning' loop onChange={(page) => { setPage(page - 1) }} total={reviews.totalPage} />
+                    </div>
                 </div>
 
                 {/* Sản phẩm liên quan */}
