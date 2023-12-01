@@ -17,8 +17,7 @@ import {
     Badge,
 } from "@material-tailwind/react";
 import { Rating } from '@mui/material';
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
+
 
 export default function ProductDetail() {
 
@@ -74,6 +73,7 @@ export default function ProductDetail() {
             }
         }
         getReviews();
+        // console.log(reviews)
     }, [id, page]);
     let curUser = getUserFromLocalStorage();
     const [colorList, setColorList] = useState([]);
@@ -181,7 +181,7 @@ export default function ProductDetail() {
                                         </div>
                                     </div>
                                     <div>
-                                        <ReactQuill className='text-xl' theme={'bubble'} readOnly value={product.description} />
+                                        <p className='text-gray-700'>{product.description}</p>
                                     </div>
                                     <h6 className='text-2xl font-semibold text-red-600'>Giá bán :&nbsp;{formatPrice(product.discountPrice + extraFee)}</h6>
                                     <h6 className='text-lg font-semibold'>
@@ -291,11 +291,14 @@ export default function ProductDetail() {
                             </div>
                         ))
                     ) :
-                        <></>
+                        <>
+                        </>
                     }
-                    <div hidden={reviews?.list?.length === 0 ? true : false} className="flex justify-center">
-                    <Pagination color='warning' loop onChange={(page) => { setPage(page - 1) }} total={reviews.totalPage} />
-                    </div>
+                  
+                        <div className="flex justify-center my-4">
+                            <Pagination color="warning" loop onChange={(page) => setPage(page - 1)} total={reviews.totalPage} />
+                        </div>
+                    
                 </div>
 
                 {/* Sản phẩm liên quan */}

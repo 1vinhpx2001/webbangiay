@@ -6,7 +6,7 @@ import IconDropDown from '../icons/IconDropDown'
 import { useDispatch } from 'react-redux'
 import * as authAction from '../../redux/auth/authSlice'
 import Categories from './components/Categories'
-import { Tooltip } from '@nextui-org/react'
+import { Avatar, Tooltip } from '@nextui-org/react'
 import { getAllCategory } from '../../api/CategoryApi'
 import IconCart from '../icons/IconCart'
 export default function Header() {
@@ -55,6 +55,13 @@ export default function Header() {
         {userCurrent?.id !== undefined ? <>
           <div className="dropdown" >
             <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" onClick={handleDropDown} className="border-l-[1px] pl-2 border-gray-300 focus:outline-none text-center inline-flex items-center " type="button">Xin chào&nbsp;,&nbsp;<span className='font-semibold'>{userCurrent?.name}</span>
+              <Avatar
+                isBordered
+                color="default"
+                radius="full"
+                src={userCurrent?.avatar}
+                className='mx-2 h-[30px] w-[30px]'
+              />
               <IconDropDown></IconDropDown>
             </button>
 
@@ -92,9 +99,9 @@ export default function Header() {
         }
       </div>
 
-     
+
       <nav
-        className="flex items-center justify-between flex-wrap bg-white py-4 lg:px-12 shadow-lg border-solid ">
+        className="flex items-center justify-between flex-wrap bg-white pt-2 pb-4 lg:px-12 shadow-lg border-solid ">
         <div className="flex justify-between lg:w-auto w-full lg:border-b-0 pl-6 pr-2 border-solid border-b-2 border-gray-300 pb-5 lg:pb-0">
           <div className="flex items-center flex-shrink-0 text-gray-800 mr-16">
             <img src={require('../../assets/ShoesLogo.png')} alt="ShoesLogo" style={{ width: '40px', height: '40px' }} />
@@ -118,20 +125,20 @@ export default function Header() {
         </div>
 
         <div className={`menu w-full flex-grow lg:flex lg:items-center lg:w-auto lg:px-3 px-8 ${isMenuOpen ? "block" : "hidden"
-                }`}>
+          }`}>
           <div className="text-md font-bold  lg:flex-grow">
             <Link to='/'
               className="block mt-4 lg:inline-block lg:mt-0 hover:text-white px-2 py-2 rounded hover:bg-yellow-700 mr-2">
               TRANG CHỦ
             </Link>
             <Tooltip
-              content={<Categories categories={categories}/>}
+              content={<Categories categories={categories} />}
               css={{ left: '$0', transform: 'none' }}
               placement='bottom'
-               >
-            <p className="block cursor-default mt-4 lg:inline-block lg:mt-0 hover:text-white px-2 py-2 rounded hover:bg-yellow-700 mr-2">
-              SẢN PHẨM
-            </p>
+            >
+              <p className="block cursor-default mt-4 lg:inline-block lg:mt-0 hover:text-white px-2 py-2 rounded hover:bg-yellow-700 mr-2">
+                SẢN PHẨM
+              </p>
             </Tooltip>
             <Link to='/'
               className="block mt-4 lg:inline-block lg:mt-0 hover:text-white px-2 py-2 rounded hover:bg-yellow-700 mr-2">

@@ -47,7 +47,7 @@ function App() {
 
           <Route path="/forgot-password" exact element={<ForgotPassword></ForgotPassword>}></Route>
 
-          <Route path="/profile/:id" element={currentUser === undefined ?  <NotFound404></NotFound404> : <Profile></Profile>}></Route>
+          <Route path="/profile/:id" exact element={currentUser === undefined ?  <NotFound404></NotFound404> : <Profile></Profile>}></Route>
 
           <Route path="/order-detail/:id" element={currentUser === undefined ?  <NotFound404></NotFound404> : <OrderDetail></OrderDetail>}></Route>
 

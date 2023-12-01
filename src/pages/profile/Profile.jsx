@@ -7,9 +7,12 @@ import validator from 'validator';
 import { getDistrict, getProvince, getWard } from '../../api/AuthApi';
 import { UpdateError, UpdateSuccessReload } from '../../components/alert';
 import ChangePasswordModal from '../../components/modals/ChangePasswordModal';
+import { Avatar, Badge } from '@nextui-org/react';
+import { Camera, PhotoCamera } from '@mui/icons-material';
+import ChangeAvatarModal from '../../components/modals/ChangeAvatarModal';
 
 export default function Profile() {
-   
+
     const location = useLocation();
     const id = location.pathname.split("/")[2];
     const [user, setUser] = useState({});
@@ -18,7 +21,8 @@ export default function Profile() {
     const [districts, setDistricts] = useState([]);
     const [wards, setWards] = useState([]);
     const [isOpen, isOpenModal] = useState(false);
-    
+    const [isOpen02, isOpenModal02] = useState(false);
+
     useEffect(() => {
         async function getData() {
             // setLoad(true);
@@ -180,7 +184,35 @@ export default function Profile() {
                             Thông tin cá nhân
                         </h1>
                         <form className="mt-6">
+                            <div className='flex justify-center'>
+                                <button type='button'
+                                    onClick={() => {
+                                        isOpenModal02(true);
+                                    }}
+                                >
+                                    <Badge
+                                        isOneChar
+                                        content={<PhotoCamera />}
+                                        color="default"
+                                        placement="bottom-right"
+                                    >
+                                        <Avatar
+                                            isBordered
+                                            color="default"
+                                            radius="full"
+                                            src={user.avatar}
+                                            className="w-20 h-20 text-large"
 
+                                        />
+                                    </Badge>
+                                </button>
+                                {isOpen02 && (
+                                    <ChangeAvatarModal
+                                        user={user}
+                                        isOpen02={isOpenModal02}
+                                    />
+                                )}
+                            </div>
                             <div className='my-2'>
                                 <label
                                     htmlFor="name"
@@ -219,7 +251,7 @@ export default function Profile() {
                                 <div>
                                     <label htmlFor="province" className="block text-sm font-semibold text-gray-800 ">Tỉnh/Thành phố</label>
                                     <select value={user.province} onChange={handleChangeProvince} id="province" placeholder="Tỉnh/Thành phố" className=" block w-full px-4 py-2 mt-2  bg-white border rounded-md focus:border-yellow-400 focus:ring-yellow-300 focus:outline-none focus:ring focus:ring-opacity-40">
-                                    
+
                                         {provinces.map((provinceItem) => (
                                             <option key={provinceItem.ProvinceID} value={provinceItem.ProvinceID}>
                                                 {provinceItem.ProvinceName}
@@ -230,7 +262,7 @@ export default function Profile() {
                                 <div>
                                     <label htmlFor="district" className=" block text-sm font-semibold text-gray-800">Quận/Huyện</label>
                                     <select value={user.district} onChange={handleChangeDistrict} id="district" placeholder="Quận/Huyện" className="block w-full px-4 py-2 mt-2  bg-white border rounded-md focus:border-yellow-400 focus:ring-yellow-300 focus:outline-none focus:ring focus:ring-opacity-40">
-                                    
+
                                         {districts.slice(1).map((districtItem) => (
                                             <option key={districtItem.DistrictID} value={districtItem.DistrictID}>
                                                 {districtItem.DistrictName}
@@ -243,7 +275,7 @@ export default function Profile() {
                                 <div>
                                     <label htmlFor="ward" className="block text-sm font-semibold text-gray-800 ">Phường/Xã</label>
                                     <select value={user.ward} onChange={handleChangeWard} id="ward" placeholder="Phường/Xã" className=" block w-full px-4 py-2 mt-2  bg-white border rounded-md focus:border-yellow-400 focus:ring-yellow-300 focus:outline-none focus:ring focus:ring-opacity-40">
-                                   
+
                                         {wards.map((wardItem) => (
                                             <option key={wardItem.WardCode} value={wardItem.WardCode}>
                                                 {wardItem.WardName}
@@ -279,20 +311,20 @@ export default function Profile() {
 
 
                             <div className="mt-6 grid grid-cols-2 gap-16">
-                                <button type='button' 
-                                className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-yellow-700 rounded-md hover:bg-yellow-600 focus:outline-none focus:bg-yellow-600"
-                                onClick={() => {
-                                    isOpenModal(true);
-                                  }}
+                                <button type='button'
+                                    className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-yellow-700 rounded-md hover:bg-yellow-600 focus:outline-none focus:bg-yellow-600"
+                                    onClick={() => {
+                                        isOpenModal(true);
+                                    }}
                                 >
-                                  Đổi mật khẩu
+                                    Đổi mật khẩu
                                 </button>
                                 {isOpen && (
-                                  <ChangePasswordModal
-                                    isOpen={isOpenModal}
-                                  />
+                                    <ChangePasswordModal
+                                        isOpen={isOpenModal}
+                                    />
                                 )}
-                                   
+
                                 <button type='button' onClick={handleSaveInfo} className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-yellow-700 rounded-md hover:bg-yellow-600 focus:outline-none focus:bg-yellow-600">
                                     Lưu
                                 </button>
