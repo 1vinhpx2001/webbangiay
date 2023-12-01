@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import { Divider, Button, Spinner } from "@nextui-org/react";
+import { Divider, Button, Spinner, ButtonGroup } from "@nextui-org/react";
 import { Box, Step, StepLabel, Stepper } from "@mui/material";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { getDistrict, getProvince, getWard } from '../../api/AuthApi';
 import { UpdateError, UpdateSuccessNavigate } from '../../components/alert';
 import { cancelOrder, finishOrder, getOrder } from '../../api/UserApi';
+import RatingProduct from './RatingProduct';
 
 const status = [
     { key: 0, step: 'enable', value: 'Bắt đầu' },
@@ -31,6 +32,7 @@ export default function OrderDetail() {
     const [wards, setWards] = useState([])
     const [order, setOrder] = useState({});
     const { id } = useParams();
+    const [isOpen, isOpenModal] = useState(false);
 
     useEffect(() => {
         async function getOrderDetail() {
@@ -115,7 +117,8 @@ return (
                         {order.items?.map((item) => (
                             <div className='sm:flex gap-10 my-4'>
                                 <img className='object-cover w-[150px] h-[150px] rounded-lg' src={item.image} alt="...loading" />
-                                <div className='mt-4 sm:mt-0'>
+                                <div className='mt-4 sm:mt-0 flex flex-col justify-between'>
+                                    <div>
                                     <p>{item.name}</p>
                                     {/* <p>Số lượng: {item.quantity} / Size: {item.size} / Màu: </p>
                                     <span className='z-10 mt-1 ml-1 h-5 w-5 border border-black border-opacity-20 rounded-full' style={{ backgroundColor: item.color }}></span> */}
@@ -128,6 +131,22 @@ return (
                                             ></span>
                                     </div>
                                     <p>{formatPrice(item.subPrice)}</p>
+                                    </div>
+                                    {order?.state === 'done'? 
+                                    <>
+                                    <Button color='secondary' variant='ghost' className='w-14 mt-2 sm:mt-0' productId={item.id} productName={item.name}
+                                    onClick={() => {
+                                        isOpenModal(true);
+                                      }}
+                                    >Phản hồi
+                                    </Button>
+                                    {isOpen && (
+                                        <RatingProduct productId={item.id} productName={item.name} productImg={item.image}
+                                          isOpen={isOpenModal}
+                                        />
+                                    )}
+                                    </>
+                                    : <></> }
                                 </div>
                             </div>
                         ))}
