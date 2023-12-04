@@ -51,7 +51,7 @@ export default function Header() {
   return (
     <div >
       <div className='flex items-center justify-end pr-6 py-2'>
-        <Link to='/' className='pr-2 hover:text-yellow-700'>👑 SneakerHead</Link>
+        <Link to='/' className='pr-2 hover:text-yellow-700 text-center'>👑 SneakerHead</Link>
         {userCurrent?.id !== undefined ? <>
           <div className="dropdown" >
             <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" onClick={handleDropDown} className="border-l-[1px] pl-2 border-gray-300 focus:outline-none text-center inline-flex items-center " type="button">Xin chào&nbsp;,&nbsp;<span className='font-semibold'>{userCurrent?.name}</span>

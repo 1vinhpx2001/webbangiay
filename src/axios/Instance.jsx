@@ -4,7 +4,7 @@ import { clearUserFromLocalStorage } from '../utils/userHandle';
 import { API_ADDRESS, SHOP_ID, TOKEN_API_ADDRESS } from '../common/const';
 
 const Instance = axios.create({
-    baseURL: "http://localhost:8080/api"
+    baseURL: "https://sneakerheadstore-5968ae1f44cc.herokuapp.com/api"
 });
 
 const axiosCountry = axios.create({
