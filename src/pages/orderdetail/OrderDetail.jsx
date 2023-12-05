@@ -118,7 +118,7 @@ export default function OrderDetail() {
                         <div className='lg:flex lg:gap-10'>
                             <div className='lg:w-3/5'>
                                 {order.items?.map((item) => (
-                                    <div key={item.id} className='sm:flex gap-10 my-4'>
+                                    <div key={item.itemId} className='sm:flex gap-10 my-4'>
                                         <img className='object-cover w-[150px] h-[150px] rounded-lg' src={item.image} alt="...loading" />
                                         <div className='mt-4 sm:mt-0 flex flex-col justify-between'>
                                             <div>
@@ -137,7 +137,7 @@ export default function OrderDetail() {
                                                 <>
                                                     <Button color='secondary' variant='ghost' className='w-14 mt-2 sm:mt-0'
                                                         onClick={() => {
-                                                            setCurrentOrderItemId(item.id);
+                                                            setCurrentOrderItemId(item.itemId);
                                                             setCurrentcurrentItemName(item.name);
                                                             setCurrentcurrentItemImage(item.image);
                                                             isOpenModal(true);
