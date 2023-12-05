@@ -134,14 +134,14 @@ return (
                                     </div>
                                     {order?.state === 'done'? 
                                     <>
-                                    <Button color='secondary' variant='ghost' className='w-14 mt-2 sm:mt-0' productId={item.id} productName={item.name}
+                                    <Button color='secondary' variant='ghost' className='w-14 mt-2 sm:mt-0'
                                     onClick={() => {
                                         isOpenModal(true);
                                       }}
                                     >Phản hồi
                                     </Button>
                                     {isOpen && (
-                                        <RatingProduct productId={item.id} productName={item.name} productImg={item.image}
+                                        <RatingProduct orderItemId={item.itemId} productName={item.name} productImg={item.image}
                                           isOpen={isOpenModal}
                                         />
                                     )}

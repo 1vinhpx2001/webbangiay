@@ -8,7 +8,7 @@ import { Spinner } from '@nextui-org/react';
 import { getUserFromLocalStorage } from '../../utils/userHandle';
 import IconQuitCross from '../../components/icons/IconQuitCross';
 
-export default function RatingProduct({ productId, productName, isOpen, productImg }) {
+export default function RatingProduct({ orderItemId, productName, isOpen, productImg }) {
 
     let userCurrent = getUserFromLocalStorage()
 
@@ -28,7 +28,7 @@ export default function RatingProduct({ productId, productName, isOpen, productI
     const handleChangeRate = (e) => {
         setRate(e.target.value)
     }
-    const sendReview = async ({ content, productId, rate }) => {
+    const sendReview = async ({ content, orderItemId, rate }) => {
         setLoad(true)
         if (userCurrent?.id === undefined) {
             toast.error('Vui lòng đăng nhập', {
@@ -53,7 +53,7 @@ export default function RatingProduct({ productId, productName, isOpen, productI
                 });
             } else {
                 const wait = toast.loading("Vui lòng chờ ...")
-                let res = await review({ content, productId, rate })
+                let res = await review({ content, orderItemId, rate })
                 if (res.data.success) {
                     setLoad(false)
                     UpdateSuccessReload(wait, 'Gửi nhận xét đánh giá thành công', true);
@@ -65,7 +65,7 @@ export default function RatingProduct({ productId, productName, isOpen, productI
         }
     }
     const handleClickSend = () => {
-        sendReview({ content, productId, rate })
+        sendReview({ content, orderItemId, rate })
     }
     return (
         <div

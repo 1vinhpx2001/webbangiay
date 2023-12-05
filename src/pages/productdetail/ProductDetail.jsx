@@ -302,6 +302,9 @@ export default function ProductDetail() {
                         ))
                     ) :
                         <>
+                        <div className='bg-gray-200'>
+                            <p className='text-gray-400 flex justify-center items-center'>CHƯA CÓ ĐÁNH GIÁ</p>
+                        </div>
                         </>
                     }
 
