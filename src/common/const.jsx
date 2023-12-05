@@ -1,3 +1,3 @@
 export const API_ADDRESS = "https://dev-online-gateway.ghn.vn/shiip/public-api"
-export const TOKEN_API_ADDRESS = "e035a837-4333-11ed-9ad7-269dd9db11fd"
-export const SHOP_ID = "119571"
+export const TOKEN_API_ADDRESS = "5eff91b7-6108-11ee-8bfa-8a2dda8ec551"
+export const SHOP_ID = "189703"

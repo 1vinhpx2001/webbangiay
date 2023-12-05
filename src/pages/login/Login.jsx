@@ -115,7 +115,7 @@ export default function Login() {
                             <Divider/>
                             </div>
                             <div className="mt-6">
-                                <Link to='http://localhost:8080/oauth2/authorization/google' className="w-full px-4 py-2 flex justify-center tracking-wide text-white transition-colors duration-200 transform bg-red-700 hover:bg-red-600 focus:outline-none focus:bg-red-600">
+                                <Link to='https://sneakerheadstore-5968ae1f44cc.herokuapp.com/oauth2/authorization/google' className="w-full px-4 py-2 flex justify-center tracking-wide text-white transition-colors duration-200 transform bg-red-700 hover:bg-red-600 focus:outline-none focus:bg-red-600">
                                 Sign in with Google
                                 </Link>
                             </div>
