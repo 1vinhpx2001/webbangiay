@@ -105,7 +105,7 @@ export default function Header() {
         <div className="flex justify-between lg:w-auto w-full lg:border-b-0 pl-6 pr-2 border-solid border-b-2 border-gray-300 pb-5 lg:pb-0">
           <div className="flex items-center flex-shrink-0 text-gray-800 mr-16">
             <img src={require('../../assets/ShoesLogo.png')} alt="ShoesLogo" style={{ width: '40px', height: '40px' }} />
-            <span className="font-semibold text-xl tracking-tight">&nbsp;&nbsp;SNEAKER SHOES</span>
+            <span className="font-semibold text-xl tracking-tight">&nbsp;&nbsp;SNEAKERHEAD STORE</span>
           </div>
           <div className="block lg:hidden ">
             <div className='flex gap-4'>

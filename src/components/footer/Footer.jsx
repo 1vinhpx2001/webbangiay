@@ -94,7 +94,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="w-full bg-gray-400 p-4 text-center text-neutral-700 ">
-          © 2010 - 2023 Fashion Shoes
+          © 2010 - 2023 SneakerHead Store
         </div>
       </div>
   )

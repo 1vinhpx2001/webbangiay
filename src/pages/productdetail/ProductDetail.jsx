@@ -267,6 +267,16 @@ export default function ProductDetail() {
                         )}
                 </div>
 
+                {/* Hướng dẫn chọn size */}
+                <div>
+                    <p className='text-xl font-semibold mt-16 flex justify-center'>HƯỚNG DẪN CHỌN SIZE</p>
+                    <img
+                        src={require('../../assets/ShoesGuides.png')}
+                        alt="sizeguide"
+                        className="h-10/12 w-10/12 object-fill mx-auto"
+                    />
+                </div>
+
                 {/* Đánh giá sản phẩm */}
                 <div>
                     <p className='text-xl text-yellow-700 font-semibold mt-16'>Đánh giá sản phẩm</p>
@@ -294,11 +304,11 @@ export default function ProductDetail() {
                         <>
                         </>
                     }
-                  
-                        <div className="flex justify-center my-4">
-                            <Pagination color="warning" loop onChange={(page) => setPage(page - 1)} total={reviews.totalPage} />
-                        </div>
-                    
+
+                    <div className="flex justify-center my-4">
+                        <Pagination color="warning" loop onChange={(page) => setPage(page - 1)} total={reviews.totalPage} />
+                    </div>
+
                 </div>
 
                 {/* Sản phẩm liên quan */}

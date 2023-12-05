@@ -29,8 +29,6 @@ export default function Homepage() {
       style: 'currency',
       currency: 'VND',
     }).format(value);
-  let curUser = getUserFromLocalStorage();
-  let curToken = getFromLocalStorage();
 
   const [hotProduct, setHotProduct] = useState([]);
   
