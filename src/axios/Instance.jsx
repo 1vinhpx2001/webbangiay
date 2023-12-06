@@ -5,6 +5,7 @@ import { API_ADDRESS, SHOP_ID, TOKEN_API_ADDRESS } from '../common/const';
 
 const Instance = axios.create({
     baseURL: "https://sneakerheadstore-5968ae1f44cc.herokuapp.com/api"
+    // baseURL: "http://localhost:8080/api"
 });
 
 const axiosCountry = axios.create({

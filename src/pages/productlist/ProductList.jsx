@@ -4,9 +4,9 @@ import {
     CardHeader,
     CardBody,
     Typography,
-    Rating,
     Badge,
 } from "@material-tailwind/react";
+import { Rating } from '@mui/material';
 import {
     Pagination,
     Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Button,
@@ -215,7 +215,7 @@ export default function ProductList() {
                         {loading ?
                             Array.from(new Array(8)).map(() => (
                                 <div>
-                                    <LoadingCard/>
+                                    <LoadingCard />
                                 </div>
                             )) :
                             filterProduct?.map((product) => (
@@ -246,7 +246,7 @@ export default function ProductList() {
                                                 </Typography>
                                             </div>
                                             <div>
-                                                <Rating unratedColor='amber' ratedColor='amber' readonly></Rating>
+                                                <Rating readOnly precision={0.1} size="small" value={product.rate}></Rating>
                                             </div>
                                         </CardBody>
                                     </Card>
