@@ -107,7 +107,7 @@ export default function Login() {
                             </div>
 
                             <div className="mt-6">
-                                <button type='button' disabled={loading  ? true : false} onClick={handleLogin} className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-yellow-700 rounded-md hover:bg-yellow-600 focus:outline-none focus:bg-yellow-600">
+                                <button type='submit' disabled={loading  ? true : false} onClick={handleLogin} className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-yellow-700 rounded-md hover:bg-yellow-600 focus:outline-none focus:bg-yellow-600">
                                 {loading ?<Spinner size='sm' color="default" /> : "Đăng nhập"}
                                 </button>
                             </div>
