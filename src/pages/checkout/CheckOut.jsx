@@ -476,7 +476,7 @@ export default function CheckOut() {
                                     value='paypal'
                                     onChange={handleChangePayment}
                                 />
-                                <img src="https://www.sketchappsources.com/resources/source-image/PayPalCard.png" alt="vnpay" className='ml-4 h-[30px] w-[40px]' />
+                                <img src="https://www.sketchappsources.com/resources/source-image/PayPalCard.png" alt="paypal" className='ml-4 h-[30px] w-[40px]' />
                                 <label
                                     className='ml-3 mt-1'
                                     htmlFor='radio03'
