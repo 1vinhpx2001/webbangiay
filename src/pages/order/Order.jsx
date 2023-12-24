@@ -88,62 +88,80 @@ export default function Order() {
       <div className='bg-white w-10/12 rounded-lg mx-auto my-10 h-16 drop-shadow-lg flex justify-center items-center'>
         <p className='text-yellow-600 text-xl font-semibold'>ĐƠN HÀNG CỦA BẠN</p>
       </div>
-
-      <Table
-        aria-label="Example table with client side sorting"
-        sortDescriptor={list.sortDescriptor}
-        onSortChange={list.sort}
-        classNames={{
-          table: "min-h-[400px]",
-        }}
-        bottomContent={
-          <div className="flex w-full justify-center">
-            <Pagination
-              color="warning"
-              page={page}
-              total={pages}
-              onChange={(page) => setPage(page)}
-            />
-          </div>
-        }
-      >
-        <TableHeader>
-          <TableColumn key="id" >
-            MÃ ĐƠN HÀNG
-          </TableColumn>
-          <TableColumn key="createdDate" >
-            NGÀY ĐẶT
-          </TableColumn>
-          <TableColumn key="userName" >
-            NGƯỜI ĐẶT
-          </TableColumn>
-          <TableColumn key="totalPrice" >
-            TỔNG SỐ TIỀN
-          </TableColumn>
-          <TableColumn key="totalQuantity" >
-            SỐ LƯỢNG SẢN PHẨM
-          </TableColumn>
-          <TableColumn key="state">
-            TRẠNG THÁI
-          </TableColumn>
-        </TableHeader>
-        <TableBody items={list.items} isLoading={loading} loadingContent={<Spinner color='warning' label='Đang tải...'></Spinner>}>
-          {(row) => (
-            <TableRow key={row.id}>
-              <TableCell ><Link to={`/order-detail/${row.id}`} className='hover:text-yellow-700 underline'>{row.id}</Link></TableCell>
-              <TableCell >{row.createdDate}</TableCell>
-              <TableCell >{row.userName}</TableCell>
-              <TableCell >{formatPrice(row.totalPrice)}</TableCell>
-              <TableCell >{row.totalProduct}</TableCell>
-              <TableCell >
-                <Chip className="capitalize" color={statusColorMap[row.state]} size="sm" variant="flat">
-                {state[row.state]}
-                </Chip>
-              </TableCell>
-            </TableRow>
-          )}
-        </TableBody>
-      </Table>
+      {loading === true ? (
+              <div className='w-10/12 h-[300px] flex justify-center mx-auto'>
+                <Spinner color='warning' label='Đang tải...'></Spinner>
+              </div>
+      ) : (
+        <>
+        {loading === '404' ? (
+            <div className='w-10/12 mx-auto h-[300px] flex justify-center items-center text-lg font-semibold text-gray-600 my-10 bg-gray-300'>
+              Chưa có đơn hàng nào
+            </div>
+        ):
+        (
+          <>
+          <Table
+          aria-label="Example table with client side sorting"
+          sortDescriptor={list.sortDescriptor}
+          onSortChange={list.sort}
+          classNames={{
+            table: "min-h-[400px]",
+          }}
+          bottomContent={
+            <div className="flex w-full justify-center">
+              <Pagination
+                color="warning"
+                page={page}
+                total={pages}
+                onChange={(page) => setPage(page)}
+              />
+            </div>
+          }
+        >
+          <TableHeader>
+            <TableColumn key="id" >
+              MÃ ĐƠN HÀNG
+            </TableColumn>
+            <TableColumn key="createdDate" >
+              NGÀY ĐẶT
+            </TableColumn>
+            <TableColumn key="userName" >
+              NGƯỜI ĐẶT
+            </TableColumn>
+            <TableColumn key="totalPrice" >
+              TỔNG SỐ TIỀN
+            </TableColumn>
+            <TableColumn key="totalQuantity" >
+              SỐ LƯỢNG SẢN PHẨM
+            </TableColumn>
+            <TableColumn key="state">
+              TRẠNG THÁI
+            </TableColumn>
+          </TableHeader>
+          <TableBody 
+          items={list.items}
+          >
+            {(row) => (
+              <TableRow key={row.id}>
+                <TableCell ><Link to={`/order-detail/${row.id}`} className='hover:text-yellow-700 underline'>{row.id}</Link></TableCell>
+                <TableCell >{row.createdDate}</TableCell>
+                <TableCell >{row.userName}</TableCell>
+                <TableCell >{formatPrice(row.totalPrice)}</TableCell>
+                <TableCell >{row.totalProduct}</TableCell>
+                <TableCell >
+                  <Chip className="capitalize" color={statusColorMap[row.state]} size="sm" variant="flat">
+                  {state[row.state]}
+                  </Chip>
+                </TableCell>
+              </TableRow>
+            )}
+          </TableBody>
+        </Table>
+        </>
+        )} 
+        </>
+      )}
     </div>
   )
 }

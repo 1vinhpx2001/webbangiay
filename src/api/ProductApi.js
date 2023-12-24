@@ -9,6 +9,15 @@ export const getSortProducts = async (sort) =>{
     };
 }
 
+export const getAllProducts = async () =>{
+    try {
+        const response = await get(`/products`);
+        return response
+    } catch (error) { 
+        return error.response.data 
+    };
+}
+
 export const getProductByCategory = async (id,page,sort='') =>{
     try {
         const response = await get(`/products/category/${id}?size=8&page=${page}&sort=${sort}`);

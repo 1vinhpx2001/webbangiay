@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import CarouselHome from '../../components/carousel/CarouselHome'
-import { getSortProducts } from '../../api/ProductApi'
+import { getSortProducts,getAllProducts } from '../../api/ProductApi'
 import { getFromLocalStorage } from '../../utils/tokenHandle'
 import { getUserFromLocalStorage } from '../../utils/userHandle'
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -29,9 +29,10 @@ export default function Homepage() {
       style: 'currency',
       currency: 'VND',
     }).format(value);
-
+    let currentUser = getUserFromLocalStorage();
+    let currentToken = getFromLocalStorage();
   const [hotProduct, setHotProduct] = useState([]);
-  
+  const [recomProduct, setRecomProduct] = useState([]);
   const [newProduct, setNewProduct] = useState([]);
   useEffect(() => {
     async function getHotProduct() {
@@ -46,8 +47,17 @@ export default function Homepage() {
         setNewProduct(resNew.data.list);
       }
     }
+    async function getRecommendProduct() {
+      if (currentUser !== undefined && currentToken !== undefined) {
+        let res = await getAllProducts()
+        if (res.success) {
+          const randomProducts = res.data.list.sort(() => 0.5 - Math.random()).slice(0, 8);
+          setRecomProduct(randomProducts)
+        }
+      }
+    }
+    getRecommendProduct();
     getHotProduct();
-   
   }, []);
   return (
     <div className='mt-5'>
@@ -73,6 +83,7 @@ export default function Homepage() {
         </div>
       </div>
       <div className='w-10/12 mx-auto my-5 '>
+
         {/* Sản phẩm mới section */}
         <p className='text-xl text-yellow-700 font-semibold mt-16'>SẢN PHẨM MỚI</p>
         <div className='my-2'>
@@ -231,6 +242,90 @@ export default function Homepage() {
               ))}
           </Swiper>
         </div>
+
+         {/* Sản phẩm gợi ý */}
+         {currentUser?.id !== undefined && currentToken !== undefined ? (
+        <>
+        <p className='text-xl text-yellow-700 font-semibold mt-16'>SẢN PHẨM GỢI Ý</p>
+        <div className='my-2'>
+          <Swiper
+            autoplay={{
+              delay: 2500,
+              disableOnInteraction: false,
+            }}
+            spaceBetween={0}
+            pagination={{
+              clickable: true,
+            }}
+            navigation={true}
+            style={{
+              '--swiper-navigation-color': '#f5bd24',
+            }}
+            modules={[Autoplay, Navigation]}
+            breakpoints={{
+              640: {
+                slidesPerView: 1,
+                spaceBetween: 0,
+              },
+              768: {
+                slidesPerView: 2,
+                spaceBetween: 0,
+              },
+              1024: {
+                slidesPerView: 4,
+                spaceBetween: 0,
+              },
+            }}
+            className="mySwiper"
+          >
+            {recomProduct.length === 0 ? Array.from(new Array(6)).map((index) => (
+              <SwiperSlide key={index} className='p-4'>
+                <LoadingCard></LoadingCard>
+              </SwiperSlide>
+            )) :
+            recomProduct.map((product) =>
+              (
+                <SwiperSlide key={product.id} className='p-4'>
+
+                  <Card className="w-full max-w-[280px] max-h-[430] shadow-lg">
+                    <Badge color='amber' size="square" content="New">
+                      <CardHeader floated={false} color="blue-gray" className=' z-9 w-[240px] h-[240px]'>
+                        <Badge color='green' content={'- ' + product.discount + '%'} className='mr-4 mt-2'>
+                          <Link to={`/product-detail/${product.id}`}>
+                            <img className=' w-[240px] h-[240px] transition duration-300 ease-in-out hover:scale-110 '
+                              src={product.images[0]?.url}
+                              alt={product.name}
+                            />
+                          </Link>
+                        </Badge>
+                      </CardHeader>
+                    </Badge>
+                    <CardBody>
+                      <div className="mb-3 flex items-center justify-between">
+                        <Typography variant="h5" color="blue-gray" className="font-medium overflow-hidden text-ellipsis whitespace-nowrap">
+                          {product.name}
+                        </Typography>
+                      </div>
+                      <div className='flex justify-between'>
+                        <Typography color="gray">
+                          <del>{product.discount > 0 ? formatPrice(product.price) : ''}</del>
+                        </Typography>
+                        <Typography color="gray">
+                          {formatPrice(product.discountPrice)}
+                        </Typography>
+                      </div>
+                      <div>
+                        <Rating readOnly precision={0.1} size="small" value={product.rate}></Rating>
+                      </div>
+                    </CardBody>
+                  </Card>
+                </SwiperSlide>
+              ))}
+          </Swiper>
+        </div>
+        </>)
+        :<></>}
+        
       </div>
       <div className='h-[100px]'></div>
     </div>

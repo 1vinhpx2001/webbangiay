@@ -17,8 +17,10 @@ import {
     Badge,
 } from "@material-tailwind/react";
 import { Rating } from '@mui/material';
-
-
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/pagination';
 export default function ProductDetail() {
 
     let userCurrent = getUserFromLocalStorage()
@@ -73,7 +75,7 @@ export default function ProductDetail() {
             }
         }
         getReviews();
-        // console.log(reviews)
+        console.log(reviews.list)
     }, [id, page]);
     let curUser = getUserFromLocalStorage();
     const [colorList, setColorList] = useState([]);
@@ -150,11 +152,25 @@ export default function ProductDetail() {
                                     ))}
 
                                     <div className='flex flex-row justify-between h-24'>
-                                        {product?.images?.slice(0, 4).map((image) => (
-                                            <div key={`${image.imageId}`}>
-                                                <img src={`${image.url}`} alt="...loading" className='w-24 h-24 rounded-md cursor-pointer' onClick={() => swapImages(image.url)} />
-                                            </div>
-                                        ))}
+                                        <Swiper
+                                            slidesPerView={4}
+                                            spaceBetween={30}
+                                            autoplay={{
+                                                delay: 2500,
+                                                disableOnInteraction: false,
+                                            }}
+                                            pagination={{
+                                                clickable: true,
+                                            }}
+                                            modules={[Autoplay]}
+
+                                            className="mySwiper">
+                                            {product?.images?.map((image) => (
+                                                <SwiperSlide key={`${image.imageId}`} className='h-full w-full flex justify-center items-center'>
+                                                    <img src={`${image.url}`} alt="...loading" className='w-full h-full rounded-md cursor-pointer block object-cover' onClick={() => swapImages(image.url)} />
+                                                </SwiperSlide>
+                                            ))}
+                                        </Swiper>
                                     </div>
                                 </div>
                                 {/* ABOUT */}
@@ -278,8 +294,20 @@ export default function ProductDetail() {
                 </div>
 
                 {/* Đánh giá sản phẩm */}
+
                 <div>
                     <p className='text-xl text-yellow-700 font-semibold mt-16'>Đánh giá sản phẩm</p>
+                    {reviews?.list == undefined || reviews == undefined ?
+                        (
+                            <div className='bg-gray-200 h-[150px] flex justify-center items-center'>
+                                <p className='text-gray-400 flex justify-center items-center'> CHƯA CÓ ĐÁNH GIÁ NÀO</p>
+                            </div>
+                        )
+                        :
+                        (
+                            <></>
+                        )
+                    }
                     {reviews?.list?.length !== 0 ? (
                         reviews?.list?.map((review) => (
                             <div key={review.id} className='my-4'>
@@ -301,17 +329,11 @@ export default function ProductDetail() {
                             </div>
                         ))
                     ) :
-                        <>
-                        <div className='bg-gray-200'>
-                            <p className='text-gray-400 flex justify-center items-center'>CHƯA CÓ ĐÁNH GIÁ</p>
-                        </div>
-                        </>
+                        <></>
                     }
-
                     <div className="flex justify-center my-4">
                         <Pagination color="warning" loop onChange={(page) => setPage(page - 1)} total={reviews.totalPage} />
                     </div>
-
                 </div>
 
                 {/* Sản phẩm liên quan */}
@@ -329,12 +351,10 @@ export default function ProductDetail() {
                                     <Card key={product.id} className="w-full max-w-[280px] max-h-[430px] shadow-lg">
                                         <CardHeader floated={false} color="blue-gray"  >
                                             <Badge color='green' content={'- ' + product.discount + '%'} className='mr-4 mt-2'>
-                                                <Link to={`/product-detail/${product.id}`}>
-                                                    <img className='h-[300px] transition duration-300 ease-in-out hover:scale-110  '
+                                                    <img onClick={(e) => { window.location.href = `/product-detail/${product.id}` }} className='h-[300px] transition duration-300 ease-in-out hover:scale-110 hover:cursor-pointer '
                                                         src={product.images[0]?.url}
                                                         alt={product.name}
                                                     />
-                                                </Link>
                                             </Badge>
                                         </CardHeader>
 
