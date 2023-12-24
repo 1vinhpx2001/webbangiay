@@ -9,13 +9,20 @@ import Categories from './components/Categories'
 import { Avatar, Tooltip } from '@nextui-org/react'
 import { getAllCategory } from '../../api/CategoryApi'
 import IconCart from '../icons/IconCart'
+import { Badge } from '@material-tailwind/react'
+import { getCart } from '../../api/CartApi'
+import { getFromLocalStorage } from '../../utils/tokenHandle'
+
 export default function Header() {
 
   let userCurrent = getUserFromLocalStorage()
+  let currentToken = getFromLocalStorage();
   let navigate = useNavigate();
   const [isOpen, setOpen] = useState(false);
   const [isMenuOpen, setMenuOpen] = useState(false);
   const dispatch = useDispatch();
+  const [quantity,setQuantity] = useState('0');
+  const [cart, setCart] = useState({});
 
   const [categories, setCategories] = useState([])
   useEffect(() => {
@@ -26,6 +33,29 @@ export default function Header() {
     getData()
   }, []);
 
+ 
+  useEffect(() => {
+    async function getData() {
+    if (userCurrent !== undefined && currentToken !== undefined) {
+      let res = await getCart();
+      if (res.success) {
+          if (res.data.totalProduct === 0) {
+              setCart('404')
+          } else {
+              setCart(res.data);
+          }
+      }
+      else {
+          setCart('404')
+      }
+  }
+  }
+  getData();
+  if (userCurrent !== undefined && currentToken !== undefined) {
+  setQuantity(cart.totalProduct)
+  }
+  }, [cart]);
+ 
 
   const handleDropDown = () => {
     setOpen(!isOpen);
@@ -152,11 +182,15 @@ export default function Header() {
               type="search" name="search" placeholder="Search"
               value={search} onChange={handleSearchChange} />
             <button type="button" onClick={handleSearch} className="absolute right-0 top-0 mt-3 mr-2">
+              
               <IconSearch></IconSearch>
+              
             </button>
           </div>
           <Link to='/cart' className='ml-4 lg:block hidden'>
+            <Badge color='red' content={quantity} withBorder>
             <IconCart></IconCart>
+            </Badge>
           </Link>
         </div>
       </nav>
