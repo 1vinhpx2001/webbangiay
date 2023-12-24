@@ -48,7 +48,7 @@ export default function Homepage() {
       }
     }
     async function getRecommendProduct() {
-      if (currentUser !== undefined && currentToken !== undefined) {
+      if (currentUser?.id !== undefined && currentToken !== undefined) {
         let res = await getAllProducts()
         if (res.success) {
           const randomProducts = res.data.list.sort(() => 0.5 - Math.random()).slice(0, 8);
