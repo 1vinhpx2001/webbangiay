@@ -9,8 +9,6 @@ import Categories from './components/Categories'
 import { Avatar, Tooltip } from '@nextui-org/react'
 import { getAllCategory } from '../../api/CategoryApi'
 import IconCart from '../icons/IconCart'
-import { Badge } from '@material-tailwind/react'
-
 export default function Header() {
 
   let userCurrent = getUserFromLocalStorage()
@@ -26,7 +24,7 @@ export default function Header() {
     }
     getData()
   }, []);
- 
+
   const handleDropDown = () => {
     setOpen(!isOpen);
   };
@@ -152,9 +150,7 @@ export default function Header() {
               type="search" name="search" placeholder="Search"
               value={search} onChange={handleSearchChange} />
             <button type="button" onClick={handleSearch} className="absolute right-0 top-0 mt-3 mr-2">
-              
               <IconSearch></IconSearch>
-              
             </button>
           </div>
           <Link to='/cart' className='ml-4 lg:block hidden'>

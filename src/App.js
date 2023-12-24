@@ -20,7 +20,6 @@ import FbMessenger from "./components/fbmessenger/FbMessenger";
 
 function App() {
   let currentUser= getUserFromLocalStorage()
-  console.log(currentUser)
   return (
     <>
       <BrowserRouter>

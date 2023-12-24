@@ -21,6 +21,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
+
 export default function ProductDetail() {
 
     let userCurrent = getUserFromLocalStorage()
@@ -82,7 +83,7 @@ export default function ProductDetail() {
     const [color, setColor] = useState('');
     const [extraFee, setFee] = useState(0);
     const [productOptionId, setProductOptionId] = useState('');
-    const [loadMore, setLoadMore] = useState(false);
+
     const handleChangeSize = (e) => {
         setProductOptionId(e);
         product.options.forEach((option) => {
@@ -122,10 +123,7 @@ export default function ProductDetail() {
     const handleAddToCart = () => {
         addToCart({ productOptionId, color, quantity });
     };
-    const [thumbsSwiper, setThumbsSwiper] = useState(null);
-    const handleLoadMore = () => {
-        setLoadMore(!loadMore);
-    };
+
     function classNames(...classes) {
         return classes.filter(Boolean).join(' ');
     }
@@ -297,7 +295,7 @@ export default function ProductDetail() {
 
                 <div>
                     <p className='text-xl text-yellow-700 font-semibold mt-16'>Đánh giá sản phẩm</p>
-                    {reviews?.list == undefined || reviews == undefined ?
+                    {reviews?.list === undefined || reviews === undefined ?
                         (
                             <div className='bg-gray-200 h-[150px] flex justify-center items-center'>
                                 <p className='text-gray-400 flex justify-center items-center'> CHƯA CÓ ĐÁNH GIÁ NÀO</p>
