@@ -47,7 +47,7 @@ export default function ForgotPassword() {
                     UpdateSuccessReload(wait, 'Mã xác thực đã được gửi đến email', false)
                 }
                 else{
-                    UpdateError(wait, 'Email này không tồn tài !')
+                    UpdateError(wait, 'Email này không tồn tại !')
                 }
             } else {
                 UpdateError(wait, 'Vui lòng nhập chính xác email')
