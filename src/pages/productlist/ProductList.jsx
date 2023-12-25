@@ -176,8 +176,8 @@ export default function ProductList() {
                                                 value={gender}
                                                 onChange={setGender}
                                             >
-                                                <Checkbox value="nam">Nam</Checkbox>
-                                                <Checkbox value="nữ">Nữ</Checkbox>
+                                                <Checkbox value="Nam">Nam</Checkbox>
+                                                <Checkbox value="Nữ">Nữ</Checkbox>
                                             </CheckboxGroup>
                                             <Button size="sm" color='success' variant='ghost' className='text-sm' onClick={filterPrice}>Lọc sản phẩm</Button>
                                             <Button size="sm" bordered variant='ghost' color='danger' className='text-sm' onClick={resetFilter}> Hủy lọc</Button>
