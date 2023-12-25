@@ -170,7 +170,7 @@ export default function ProductList() {
 
                                                 valueLabelFormat={value => formatPrice(value)}
                                             />
-                                            {/* <div className="text-small font-bold">Giới tính</div>
+                                            <div className="text-small font-bold">Giới tính</div>
                                             <CheckboxGroup
                                                 orientation="horizontal"
                                                 value={gender}
@@ -178,7 +178,7 @@ export default function ProductList() {
                                             >
                                                 <Checkbox value="Male">Nam</Checkbox>
                                                 <Checkbox value="Female">Nữ</Checkbox>
-                                            </CheckboxGroup> */}
+                                            </CheckboxGroup>
                                             <Button size="sm" color='success' variant='ghost' className='text-sm' onClick={filterPrice}>Lọc sản phẩm</Button>
                                             <Button size="sm" bordered variant='ghost' color='danger' className='text-sm' onClick={resetFilter}> Hủy lọc</Button>
                                         </div>
