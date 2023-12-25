@@ -34,7 +34,7 @@ function App() {
 
           <Route path="/login" exact element={<Login></Login>}></Route>
 
-          <Route path="/register" exact element={<Register></Register>}></Route>
+          <Route path="/register" exact element={currentUser === undefined ?  <Register></Register> : <NotFound404></NotFound404>}></Route>
 
           <Route path="/order" exact element={currentUser === undefined ?  <NotFound404></NotFound404> : <Order></Order>}></Route>
 
