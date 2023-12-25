@@ -41,9 +41,13 @@ export default function ForgotPassword() {
         if (activeStep === 0) {
             if (checkEmail) {
                 let check = await resetPassword({ email })
-                UpdateSuccessReload(wait, 'Mã xác thực đã được gửi đến email', false)
+                // UpdateSuccessReload(wait, 'Mã xác thực đã được gửi đến email', false)
                 if (check.data.success) {
                     setActiveStep(activeStep + 1);
+                    UpdateSuccessReload(wait, 'Mã xác thực đã được gửi đến email', false)
+                }
+                else{
+                    UpdateError(wait, 'Email này không tồn tài !')
                 }
             } else {
                 UpdateError(wait, 'Vui lòng nhập chính xác email')
