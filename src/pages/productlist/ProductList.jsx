@@ -147,6 +147,7 @@ export default function ProductList() {
             <div className='ml-6 flex flex-col justify-between'>
                 <div>
                     <div className='sm:flex sm:justify-between'>
+                        <div className='w-full'>
                         <p className='text-xl text-yellow-700 font-semibold mt-10 '>SẢN PHẨM NỔI BẬT</p>
                         <div className='mb-5 mt-5 sm:mt-10 flex gap-2'>
                             <div>
@@ -210,6 +211,7 @@ export default function ProductList() {
                                 </Dropdown>
                             </div>
                         </div>
+                    </div>
                     </div>
                     <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 '>
                         {loading ?
